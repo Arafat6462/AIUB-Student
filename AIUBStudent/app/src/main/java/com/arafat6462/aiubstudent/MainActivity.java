@@ -6,49 +6,47 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
-    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener((BottomNavigationView.OnNavigationItemSelectedListener) bottomNavMethod);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,new HomeFragment()).commit();
+        // default selected fragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
 
-    private BottomNavigationView.OnNavigationItemReselectedListener bottomNavMethod = new
-            BottomNavigationView.OnNavigationItemReselectedListener() {
+    // change the fragment page from bottom navigation view according to user choice
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new
+            BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
-        public boolean onNavigationItemReselected(@NonNull MenuItem menuItem) {
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-            Fragment fragment = null;
-            switch (menuItem.getItemId())
-            {
-                case R.id.home:
-                    fragment = new HomeFragment();
+            Fragment selectedFragment = null;
+
+            switch (menuItem.getItemId()){
+                case R.id.nav_home:
+                    selectedFragment = new HomeFragment();
+                    break;
+               case R.id.nav_dashboard:
+                    selectedFragment = new DashboardFragment();
+                    break;
+               case R.id.nav_profile:
+                    selectedFragment = new ProfileFragment();
                     break;
 
-                 case R.id.dashboard:
-                    fragment = new DashboardFragment();
-                    break;
+            }
 
-                 case R.id.profile:
-                    fragment = new ProfileFragment();
-                    break;
-              }
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.container , fragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
             return true;
-        }
+         }
     };
 }

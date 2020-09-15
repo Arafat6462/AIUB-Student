@@ -4,16 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment"
-
-    android:background="@color/colorPrimary"
-    android:id="@+id/profile">
+    android:background="@android:color/holo_blue_bright">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
+        android:text="Profile fragment"
         android:textSize="30sp"
-        android:textColor="#FFC107"/>
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>
