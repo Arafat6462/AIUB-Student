@@ -5,4 +5,17 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="loginPageBackground">#DFF2FF</color>
     <color name="white">#ffffff</color>
+
+    <color name="circularProgressbarBackgroundGray">#E7F2EC</color>
+    <color name="circularProgressbarForegroundGreen">#4CB050</color>
+    <color name="circularProgressbarForegroundBlue">#00ACC3</color>
+    <color name="circularProgressbarForegroundYellow">#FFB95D</color>
+
+    <style name="circularProgressBarValue">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circular_progress_bar</item>
+    </style>
+
+
+
 </resources>
