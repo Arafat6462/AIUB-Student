@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF5722</color>
-    <color name="appStatusBarColor">#722196F3</color>
+    <color name="appBar_BottomNavigationColor">#00ACC3</color>
+    <color name="appStatusBarColor">#607D8B</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="loginPageBackground">#DFF2FF</color>
     <color name="white">#ffffff</color>
