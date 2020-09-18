@@ -6,47 +6,82 @@
     android:layout_height="match_parent"
     tools:context=".DashboardFragment">
 
-    <ProgressBar
-        android:id="@+id/progressBarBlue"
-        style="@style/circularProgressBarValue"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:progress="90"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center|left"
 
-    <TextView
-        android:id="@+id/progressBarTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="90%"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/app_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="cursive"
+                android:text="AIUB Student"
 
 
-        app:layout_constraintBottom_toBottomOf="@+id/progressBarBlue"
-        app:layout_constraintEnd_toEndOf="@+id/progressBarBlue"
-        app:layout_constraintStart_toStartOf="@+id/progressBarBlue"
-        app:layout_constraintTop_toTopOf="@+id/progressBarBlue" />
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/buttonDecress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-10%"
+        </LinearLayout>
 
-        app:layout_constraintStart_toStartOf="@+id/progressBarBlue"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarBlue" />
 
-    <Button
-        android:id="@+id/buttonIncrease"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+10%"
+        <ProgressBar
+            android:id="@+id/progressBarGreen"
+            style="@style/circularProgressBarGreen"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
 
-        app:layout_constraintEnd_toEndOf="@+id/progressBarBlue"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarBlue" />
+            android:progress="90"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/progressBarBlue"
+            style="@style/circularProgressBarBlue"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:progress="90"
+
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarGreen"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarGreen"
+            app:layout_constraintStart_toStartOf="@+id/progressBarGreen"
+            app:layout_constraintTop_toTopOf="@+id/progressBarGreen" />
+
+        <Button
+            android:id="@+id/buttonDecress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-10%"
+
+            app:layout_constraintStart_toStartOf="@+id/progressBarGreen"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarGreen" />
+
+        <Button
+            android:id="@+id/buttonIncrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+10%"
+
+            app:layout_constraintEnd_toEndOf="@+id/progressBarGreen"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarGreen" />
+
+ </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FF5722</color>
-    <color name="colorPrimaryDark">#801C1A1E</color>
+    <color name="appStatusBarColor">#722196F3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="loginPageBackground">#DFF2FF</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 
     <color name="circularProgressbarBackgroundGray">#E7F2EC</color>
     <color name="circularProgressbarForegroundGreen">#4CB050</color>
     <color name="circularProgressbarForegroundBlue">#00ACC3</color>
     <color name="circularProgressbarForegroundYellow">#FFB95D</color>
 
-    <style name="circularProgressBarValue">
+    <style name="circularProgressBarBlue">
         <item name="android:indeterminateOnly">false</item>
-        <item name="android:progressDrawable">@drawable/circular_progress_bar</item>
-    </style>
+        <item name="android:progressDrawable">@drawable/circular_progress_bar_blue</item>
+      </style>
+
+ <style name="circularProgressBarGreen">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circular_progress_bar_green</item>
+      </style>
+
+ <style name="circularProgressBarYellow">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circular_progress_bar_yellow</item>
+      </style>
 
 
 

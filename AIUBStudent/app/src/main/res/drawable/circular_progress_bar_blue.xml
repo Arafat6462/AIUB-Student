@@ -25,10 +25,11 @@
                 android:shape="ring"
                 android:thickness="10dp"
                 android:useLevel="true">
-                <gradient
-                    android:endColor="@color/circularProgressbarForegroundBlue"
-                    android:startColor="@color/circularProgressbarForegroundGreen"
-                    android:type="sweep" />
+<!--                <gradient-->
+<!--                    android:endColor="@color/circularProgressbarForegroundBlue"-->
+<!--                    android:startColor="@color/circularProgressbarForegroundGreen"-->
+<!--                    android:type="sweep" />-->
+                <solid android:color="@color/circularProgressbarForegroundBlue" />
             </shape>
         </rotate>
     </item>
