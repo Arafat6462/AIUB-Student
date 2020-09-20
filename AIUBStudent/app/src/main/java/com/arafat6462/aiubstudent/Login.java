@@ -26,6 +26,16 @@ public class Login extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
          loginDetails();
+
+    }
+
+    // use onResume method for clear the id,password text field
+    // onResume always call after onCreate and do clear the name field.
+    @Override
+    protected void onResume() {
+        super.onResume();
+        userName.setText("");
+        password.setText("");
     }
 
     // checking the login details
@@ -52,12 +62,12 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-
-              openMainActivity();
+                openMainActivity();
             }
         });
     }
 
+    // open main activity from login page
     private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
