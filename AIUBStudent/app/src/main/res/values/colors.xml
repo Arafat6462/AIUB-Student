@@ -11,6 +11,8 @@
     <color name="circularProgressbarForegroundGreen">#4CB050</color>
     <color name="circularProgressbarForegroundBlue">#00ACC3</color>
     <color name="circularProgressbarForegroundYellow">#FFB95D</color>
+    <color name="customButtonBackgroundBlue">#DFF7F9</color>
+    <color name="customButtonBorderLightGray">#CFD8DC</color>
 
     <style name="circularProgressBarBlue">
         <item name="android:indeterminateOnly">false</item>

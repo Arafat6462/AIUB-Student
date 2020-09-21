@@ -310,6 +310,61 @@
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:paddingBottom="100dp">
+
+                <com.github.mikephil.charting.charts.RadarChart
+                    android:id="@+id/chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </com.github.mikephil.charting.charts.RadarChart>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="120dp"
+                    android:layout_height="35dp"
+                    android:text="CGPA"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/radarchart_button_default"
+                    android:textSize="12sp"
+                    android:stateListAnimator="@null"
+
+
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/chart" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="120dp"
+                    android:layout_height="35dp"
+                    android:text="CREDIT"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/radarchart_button_pressed"
+                    android:textSize="12sp"
+                    android:stateListAnimator="@null"
+
+
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/chart" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </LinearLayout>
     </ScrollView>
