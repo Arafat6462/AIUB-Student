@@ -2,4 +2,6 @@
     <string name="app_name">AIUB Student</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="share_card_view_message_in_dashboard">Do you find \'AIUB-Student\' helpful? if yes, Share the app with your AIUBian friends.</string>
+    <string name="share_card_view_message_title_in_dashboard"><![CDATA[Ultimately! it\'s all about love & friendship]]></string>
 </resources>

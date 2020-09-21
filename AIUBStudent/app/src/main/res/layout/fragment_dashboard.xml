@@ -280,7 +280,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="Ultimately! it's all about love &amp; friendship"
+                            android:text="@string/share_card_view_message_title_in_dashboard"
                             android:textAlignment="center"
                             android:textColor="@color/circularProgressbarForegroundBlue"
                             android:textSize="18sp" />
@@ -290,7 +290,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="Do you find 'AIUB-Student' helpful? if yes, Share the app with your AIUBian friends."
+                            android:text="@string/share_card_view_message_in_dashboard"
                             android:textAlignment="center"
                             android:textSize="14sp" />
 
@@ -337,12 +337,12 @@
                 <Button
                     android:id="@+id/button"
                     android:layout_width="120dp"
-                    android:layout_height="35dp"
-                    android:text="CGPA"
-                    android:layout_marginRight="10dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@drawable/radarchart_button_default"
-                    android:textSize="12sp"
                     android:stateListAnimator="@null"
+                    android:text="CGPA"
+                    android:textSize="12sp"
 
 
                     app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -351,9 +351,9 @@
                 <Button
                     android:id="@+id/button2"
                     android:layout_width="120dp"
-                    android:layout_height="35dp"
+                    android:layout_height="30dp"
                     android:text="CREDIT"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="@drawable/radarchart_button_pressed"
                     android:textSize="12sp"
                     android:stateListAnimator="@null"

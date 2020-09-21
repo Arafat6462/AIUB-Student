@@ -6,13 +6,12 @@
     <color name="loginPageBackground">#DFF2FF</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-
     <color name="circularProgressbarBackgroundGray">#E7F2EC</color>
     <color name="circularProgressbarForegroundGreen">#4CB050</color>
     <color name="circularProgressbarForegroundBlue">#00ACC3</color>
     <color name="circularProgressbarForegroundYellow">#FFB95D</color>
-    <color name="customButtonBackgroundBlue">#DFF7F9</color>
-    <color name="customButtonBorderLightGray">#CFD8DC</color>
+    <color name="customButtonBackgroundBlue">#D4EBEF</color>
+    <color name="customButtonBorderLightGray">#993EA6D5</color>
 
     <style name="circularProgressBarBlue">
         <item name="android:indeterminateOnly">false</item>
