@@ -1,5 +1,6 @@
 package com.arafat6462.aiubstudent;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,12 +10,288 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.RadarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.RadarData;
+import com.github.mikephil.charting.data.RadarDataSet;
+import com.github.mikephil.charting.data.RadarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+
+import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment {
+    
+    // for radar chart
+   private Button RadarButtonCredit,RadarButtonCgpa;
+   private boolean RadarButtonCreditBoolean=false,RadarButtonCgpaBoolean=true;
+   public static final float MAX_CREDIT = 20,MIN_CREDIT = 0, MAX_CGPA = 4,MIN_CGPA = 0;
+   public static final int CreditStepMinToMax = 8,CgpaStepMinToMax = 5;
+   private RadarChart chart;
+   public TextView textView;
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
 
-        return inflater.inflate(R.layout.fragment_dashboard,container,false);    }
+        ////////////////////      radarChart init     /////////////////////
+        chart = view.findViewById(R.id.chart);
+        RadarButtonCgpa = view.findViewById(R.id.RadarButtonCgpa);
+        RadarButtonCredit = view.findViewById(R.id.RadarButtonCredit);
+
+        // we configure the radar chart
+        chart.setBackgroundColor(Color.rgb(96,125,140)); //background
+        chart.getDescription().setEnabled(false); // below title description
+        chart.setWebLineWidth(1f); // main border line
+        // useful to export your graph
+        chart.setWebColor(Color.WHITE); // main border color
+        chart.setWebLineWidth(1f); //border width
+        chart.setWebColorInner(Color.WHITE); //circular net or sub border color
+        chart.setWebAlpha(100); // main border appacity
+
+
+
+
+        radarChartButtonCheck();
+        radarChartSetData();
+        if (RadarButtonCgpaBoolean){ radarChartPostCgpa();}
+        if (RadarButtonCreditBoolean){ radarChartPostCredit();}
+
+
+
+
+
+
+        ////////////////////      radarChart     /////////////////////
+
+
+        return view;
+    }
+
+
+
+
+
+    private void radarChartButtonCheck() {
+
+        RadarButtonCgpa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                RadarButtonCgpaBoolean=true;
+                RadarButtonCreditBoolean=false;
+                radarChartSetData();
+                radarChartPostCgpa();
+                chart.animateXY(1000,1400, Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
+
+
+
+            }
+        });
+
+        RadarButtonCredit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RadarButtonCreditBoolean=true;
+                RadarButtonCgpaBoolean=false;
+                radarChartPostCredit();
+                radarChartSetData();
+                chart.animateXY(1000,3000,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
+
+            }
+        });
+    }
+
+    private void radarChartSetData() {
+
+        ArrayList<RadarEntry> employee1 = new ArrayList<>();
+        ArrayList<RadarEntry> employee2 = new ArrayList<>();
+
+        // we generate random values for the qualities of employees measured between 1 and 2.
+//        for (int i=0; i<NB_QUALITIES; i++){
+//
+//            float val1 = 3.8f;   //(int)(Math.random()*MAX)+MIN;
+//            employee1.add(new RadarEntry(val1));
+//
+//            float val2 = 3.01f;  //(int)(Math.random()*MAX)+MIN;
+//            employee2.add(new RadarEntry(val2));
+//        }
+
+        //added later instead of above for loop random generator
+        employee1.add(new RadarEntry(3.01f));
+        employee1.add(new RadarEntry(3.2f));
+        employee1.add(new RadarEntry(2.5f));
+        employee1.add(new RadarEntry(3.81f));
+        employee1.add(new RadarEntry(3.41f));
+
+
+        employee2.add(new RadarEntry(13));
+        employee2.add(new RadarEntry(14));
+        employee2.add(new RadarEntry(12));
+        employee2.add(new RadarEntry(15));
+        employee2.add(new RadarEntry(16));
+
+
+
+
+        // we create two radar data sets objects with these data
+        RadarDataSet set1 = new RadarDataSet(employee1, "Employee A");
+        set1.setColor(Color.RED); // category one border color and fill color
+        set1.setFillColor(Color.RED);
+        set1.setDrawFilled(true); // fill the circle of radar
+        set1.setFillAlpha(100); // fill  alpha between 255
+        set1.setLineWidth(2f);  // border line width
+        set1.setDrawHighlightIndicators(true); // mark in x,y axis when touch a point
+        set1.setDrawHighlightCircleEnabled(true);
+
+
+        RadarDataSet set2 = new RadarDataSet(employee2, "Employee B");
+        set2.setColor(Color.GREEN);
+        set2.setFillColor(Color.GREEN);
+        set2.setDrawFilled(true);
+        set2.setFillAlpha(100);
+        set2.setLineWidth(2f);
+        set2.setDrawHighlightIndicators(false);
+        set2.setDrawHighlightCircleEnabled(true);
+
+        ArrayList<RadarDataSet> sets = new ArrayList<>();
+        sets.add(set1);
+        sets.add(set2);
+
+        // we create Radar Data object which will be added to the radar chart for rendering
+        // load radar graph based on user choice
+        RadarData data = new RadarData( );
+        if (RadarButtonCgpaBoolean){
+            data.addDataSet(set1);
+        }
+        if (RadarButtonCreditBoolean){
+            data.addDataSet(set2);
+        }
+
+
+        data.setValueTextSize(10f);
+        data.setDrawValues(true); // decide toggle value hide or show
+        data.setValueTextColor(Color.WHITE);
+
+        chart.setData(data);
+        chart.invalidate();
+
+    }
+
+
+
+
+
+
+    private void radarChartPostCgpa() {
+
+        // animate the chart when first shown.
+        chart.animateXY(1400,1400,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
+
+        // we define axis
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setTextSize(9f);
+        xAxis.setYOffset(0);
+        xAxis.setXOffset(0);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+
+            // we will compare two employees on a radar chart
+            // so we define qualities to compare
+            // you can added 15,20 semester and code will automatic keep value from beginning
+            private String[] qualities = new String[]{"semester-1","semester-2", "semester-3", " semester-4","semester-5","semester-6","semester-7",
+                    "semester-8", " semester-9","semester-10","semester-11","semester-12", "semester-13", " semester-14","semester-15","semester-16",
+                    "semester-17", "semester-18", " semester-19","semester-20","semester-21","semester-22", "semester-23", " semester-24","semester-25",
+                    "semester-26","semester-27", "semester-28", " semester-29","semester-30"};
+
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return qualities[(int) value % qualities.length];
+            }
+        });
+
+        xAxis.setTextColor(Color.WHITE); // axis text color like "2017-2018,summer"
+
+        // Y axis
+        YAxis yAxis = chart.getYAxis();
+        yAxis.setLabelCount(CgpaStepMinToMax,false);
+        yAxis.setTextSize(10f);
+        yAxis.setAxisMinimum(MIN_CGPA);// we define min and max for axis
+        yAxis.setAxisMaximum(MAX_CGPA);
+        yAxis.setDrawLabels(true); //marking on the main border like cgpa 2.5, 3, 3.5, 4
+
+        // we configure legend for our radar chart
+        Legend l = chart.getLegend();  // indicator sign text like "red for credit" and "green for cgpa"
+        l.setTextSize(8);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setDrawInside(true); //will increase radar space
+        l.setXEntrySpace(7f);
+        l.setYEntrySpace(5f);
+        l.setTextColor(Color.WHITE);
+
+    }
+
+
+
+
+
+
+
+    private void radarChartPostCredit() {
+
+        // animate the chart when first shown.
+        chart.animateXY(1400,1400,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
+
+        // we define axis
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setTextSize(9f);
+        xAxis.setYOffset(0);
+        xAxis.setXOffset(0);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+
+            // we will compare two employees on a radar chart
+            // so we define qualities to compare
+            // you can added 15,20 semester and code will automatic keep value from beginning
+            private String[] qualities = new String[]{"semester-1","semester-2", "semester-3", " semester-4","semester-5","semester-6","semester-7",
+                    "semester-8", " semester-9","semester-10","semester-11","semester-12", "semester-13", " semester-14","semester-15","semester-16",
+                    "semester-17", "semester-18", " semester-19","semester-20","semester-21","semester-22", "semester-23", " semester-24","semester-25",
+                    "semester-26","semester-27", "semester-28", " semester-29","semester-30"};
+
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return qualities[(int) value % qualities.length];
+            }
+        });
+
+        xAxis.setTextColor(Color.WHITE); // axis text color like "2017-2018,summer"
+
+        // Y axis
+        YAxis yAxis = chart.getYAxis();
+        yAxis.setLabelCount(CreditStepMinToMax,false);
+        yAxis.setTextSize(10f);
+        yAxis.setAxisMinimum(MIN_CREDIT);// we define min and max for axis
+        yAxis.setAxisMaximum(MAX_CREDIT);
+        yAxis.setDrawLabels(true); //marking on the main border like cgpa 2.5, 3, 3.5, 4
+
+        // we configure legend for our radar chart
+        Legend l = chart.getLegend();  // indicator sign text like "red for credit" and "green for cgpa"
+        l.setTextSize(8);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setDrawInside(true); //will increase radar space
+        l.setXEntrySpace(7f);
+        l.setYEntrySpace(5f);
+        l.setTextColor(Color.WHITE);
+
+    }
 
 }
