@@ -65,10 +65,6 @@ public class DashboardFragment extends Fragment {
         if (RadarButtonCreditBoolean){ radarChartPostCredit();}
 
 
-
-
-
-
         ////////////////////      radarChart     /////////////////////
 
 
@@ -87,9 +83,10 @@ public class DashboardFragment extends Fragment {
 
                 RadarButtonCgpaBoolean=true;
                 RadarButtonCreditBoolean=false;
-                radarChartSetData();
+                RadarButtonCgpa.setBackgroundResource(R.drawable.radarchart_button_pressed);
+                RadarButtonCredit.setBackgroundResource(R.drawable.radarchart_button_default);
                 radarChartPostCgpa();
-                chart.animateXY(1000,1400, Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
+                radarChartSetData();
 
 
 
@@ -101,9 +98,10 @@ public class DashboardFragment extends Fragment {
             public void onClick(View view) {
                 RadarButtonCreditBoolean=true;
                 RadarButtonCgpaBoolean=false;
+                RadarButtonCredit.setBackgroundResource(R.drawable.radarchart_button_pressed);
+                RadarButtonCgpa.setBackgroundResource(R.drawable.radarchart_button_default);
                 radarChartPostCredit();
                 radarChartSetData();
-                chart.animateXY(1000,3000,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
 
             }
         });
@@ -193,7 +191,7 @@ public class DashboardFragment extends Fragment {
     private void radarChartPostCgpa() {
 
         // animate the chart when first shown.
-        chart.animateXY(1400,1400,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
+        chart.animateXY(1200,2200,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
 
         // we define axis
         XAxis xAxis = chart.getXAxis();
@@ -248,7 +246,7 @@ public class DashboardFragment extends Fragment {
     private void radarChartPostCredit() {
 
         // animate the chart when first shown.
-        chart.animateXY(1400,1400,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
+        chart.animateXY(1200,2200,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
 
         // we define axis
         XAxis xAxis = chart.getXAxis();
