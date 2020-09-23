@@ -320,6 +320,7 @@
                     android:id="@+id/chart"
                     android:layout_width="match_parent"
                     android:layout_height="380dp"
+                    android:background="@drawable/radarchart_button_pressed"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

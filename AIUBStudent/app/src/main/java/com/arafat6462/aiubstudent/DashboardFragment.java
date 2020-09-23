@@ -47,13 +47,14 @@ public class DashboardFragment extends Fragment {
         RadarButtonCredit = view.findViewById(R.id.RadarButtonCredit);
 
         // we configure the radar chart
-        chart.setBackgroundColor(Color.rgb(96,125,140)); //background
+     //   chart.setBackgroundColor(Color.rgb(96,125,140)); //background
+        chart.setBackgroundResource(R.drawable.radarchart_background_color); // set background from drawable instead of direct set
         chart.getDescription().setEnabled(false); // below title description
         chart.setWebLineWidth(1f); // main border line
         // useful to export your graph
-        chart.setWebColor(Color.WHITE); // main border color
+        chart.setWebColor(Color.BLACK); // main border color
         chart.setWebLineWidth(1f); //border width
-        chart.setWebColorInner(Color.WHITE); //circular net or sub border color
+        chart.setWebColorInner(Color.BLACK); //circular net or sub border color
         chart.setWebAlpha(100); // main border appacity
 
 
@@ -109,8 +110,9 @@ public class DashboardFragment extends Fragment {
 
     private void radarChartSetData() {
 
-        ArrayList<RadarEntry> employee1 = new ArrayList<>();
-        ArrayList<RadarEntry> employee2 = new ArrayList<>();
+
+        ArrayList<RadarEntry> AllSemesterCGPA = new ArrayList<>();
+        ArrayList<RadarEntry> AllSemesterCREDIT = new ArrayList<>();
 
         // we generate random values for the qualities of employees measured between 1 and 2.
 //        for (int i=0; i<NB_QUALITIES; i++){
@@ -123,26 +125,26 @@ public class DashboardFragment extends Fragment {
 //        }
 
         //added later instead of above for loop random generator
-        employee1.add(new RadarEntry(3.01f));
-        employee1.add(new RadarEntry(3.2f));
-        employee1.add(new RadarEntry(2.5f));
-        employee1.add(new RadarEntry(3.81f));
-        employee1.add(new RadarEntry(3.41f));
+        AllSemesterCGPA.add(new RadarEntry(3.01f));
+        AllSemesterCGPA.add(new RadarEntry(3.2f));
+        AllSemesterCGPA.add(new RadarEntry(2.5f));
+        AllSemesterCGPA.add(new RadarEntry(3.81f));
+        AllSemesterCGPA.add(new RadarEntry(3.41f));
 
 
-        employee2.add(new RadarEntry(13));
-        employee2.add(new RadarEntry(14));
-        employee2.add(new RadarEntry(12));
-        employee2.add(new RadarEntry(15));
-        employee2.add(new RadarEntry(16));
+        AllSemesterCREDIT.add(new RadarEntry(13));
+        AllSemesterCREDIT.add(new RadarEntry(14));
+        AllSemesterCREDIT.add(new RadarEntry(12));
+        AllSemesterCREDIT.add(new RadarEntry(15));
+        AllSemesterCREDIT.add(new RadarEntry(16));
 
 
 
 
         // we create two radar data sets objects with these data
-        RadarDataSet set1 = new RadarDataSet(employee1, "Employee A");
-        set1.setColor(Color.RED); // category one border color and fill color
-        set1.setFillColor(Color.RED);
+        RadarDataSet set1 = new RadarDataSet(AllSemesterCGPA, "All semester CGPA");
+        set1.setColor(Color.argb(255,0,220,80));// category one border color and fill color
+        set1.setFillColor(Color.argb(100,0,200,100));
         set1.setDrawFilled(true); // fill the circle of radar
         set1.setFillAlpha(100); // fill  alpha between 255
         set1.setLineWidth(2f);  // border line width
@@ -150,9 +152,9 @@ public class DashboardFragment extends Fragment {
         set1.setDrawHighlightCircleEnabled(true);
 
 
-        RadarDataSet set2 = new RadarDataSet(employee2, "Employee B");
-        set2.setColor(Color.GREEN);
-        set2.setFillColor(Color.GREEN);
+        RadarDataSet set2 = new RadarDataSet(AllSemesterCREDIT, "All semester CREDIT");
+        set2.setColor(Color.argb(255,40,160,220));
+        set2.setFillColor(Color.argb(100,40,160,220));
         set2.setDrawFilled(true);
         set2.setFillAlpha(100);
         set2.setLineWidth(2f);
@@ -176,7 +178,7 @@ public class DashboardFragment extends Fragment {
 
         data.setValueTextSize(10f);
         data.setDrawValues(true); // decide toggle value hide or show
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.argb(255,0,25,40)); // toggle value text color
 
         chart.setData(data);
         chart.invalidate();
@@ -214,7 +216,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        xAxis.setTextColor(Color.WHITE); // axis text color like "2017-2018,summer"
+        xAxis.setTextColor(Color.GRAY); // axis text color like "2017-2018,summer"
 
         // Y axis
         YAxis yAxis = chart.getYAxis();
@@ -233,7 +235,7 @@ public class DashboardFragment extends Fragment {
         l.setDrawInside(true); //will increase radar space
         l.setXEntrySpace(7f);
         l.setYEntrySpace(5f);
-        l.setTextColor(Color.WHITE);
+        l.setTextColor(Color.BLACK);
 
     }
 
@@ -269,7 +271,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        xAxis.setTextColor(Color.WHITE); // axis text color like "2017-2018,summer"
+        xAxis.setTextColor(Color.GRAY); // axis text color like "2017-2018,summer"
 
         // Y axis
         YAxis yAxis = chart.getYAxis();
@@ -288,7 +290,7 @@ public class DashboardFragment extends Fragment {
         l.setDrawInside(true); //will increase radar space
         l.setXEntrySpace(7f);
         l.setYEntrySpace(5f);
-        l.setTextColor(Color.WHITE);
+        l.setTextColor(Color.BLACK);
 
     }
 
