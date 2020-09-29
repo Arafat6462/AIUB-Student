@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         // default selected fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+
+
     }
 
     // change the fragment page from bottom navigation view according to user choice
@@ -49,4 +53,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
          }
     };
+
+    // hide the bottom navigation & top status bar in calculate cgpa fragment from main activity.
+    public void SetNavigationVisibility(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setVisibility(View.GONE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+
+
 }
