@@ -4,4 +4,24 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="share_card_view_message_in_dashboard">Do you find \'AIUB-Student\' helpful? if yes, Share the app with your AIUBian friends.</string>
     <string name="share_card_view_message_title_in_dashboard"><![CDATA[Ultimately! it\'s all about love & friendship]]></string>
+
+
+    <!--    for RecyclerView-->
+    <string-array name="country_desc">
+        <item>Australia is Beautiful</item>
+        <item>Bangladesh is Beautiful</item>
+        <item>Bhutan is Beautiful</item>
+        <item>Canada is Beautiful</item>
+        <item>China is Beautiful</item>
+        <item>Denmark is Beautiful</item>
+     </string-array>
+
+    <string-array name="country_Name">
+        <item>Australia </item>
+        <item>Bangladesh </item>
+        <item>Bhutan </item>
+        <item>Canada  </item>
+        <item>China </item>
+        <item>Denmark  </item>
+     </string-array>
 </resources>

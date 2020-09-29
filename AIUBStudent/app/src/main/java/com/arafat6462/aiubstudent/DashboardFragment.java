@@ -6,11 +6,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -27,6 +29,8 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment {
+
+    ImageView calculateCgpaButton;
     
     // for radar chart
    private Button RadarButtonCredit,RadarButtonCgpa;
@@ -45,6 +49,8 @@ public class DashboardFragment extends Fragment {
         chart = view.findViewById(R.id.chart);
         RadarButtonCgpa = view.findViewById(R.id.RadarButtonCgpa);
         RadarButtonCredit = view.findViewById(R.id.RadarButtonCredit);
+
+
 
         // we configure the radar chart
      //   chart.setBackgroundColor(Color.rgb(96,125,140)); //background
@@ -68,6 +74,23 @@ public class DashboardFragment extends Fragment {
 
         ////////////////////      radarChart     /////////////////////
 
+
+
+  ///////////////////////////// calculate cgpa //////////////
+        calculateCgpaButton = view.findViewById(R.id.calculateCgpaButtonImageView);
+        calculateCgpaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // changing the fragment
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container,new ResultCalculationFragment());
+                fragmentTransaction.commit();
+
+
+            }
+        });
+/////////////////////////////  calculate cgpa //////////////
 
         return view;
     }
