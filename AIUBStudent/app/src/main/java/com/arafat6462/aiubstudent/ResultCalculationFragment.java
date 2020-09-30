@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 public class ResultCalculationFragment extends Fragment {
@@ -39,8 +40,22 @@ public class ResultCalculationFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
 
-        ((MainActivity)getActivity()).SetNavigationVisibility();// hide the bottom navigation & top status bar in calculate cgpa fragment from main activity.
-
+        ((MainActivity)getActivity()).SetNavigationVisibility(false);// hide the bottom navigation & top status bar in calculate cgpa fragment from main activity.
+        // back button
+        ImageView imageView = view.findViewById(R.id.back_button_on_calculate_result);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).SetNavigationVisibility(true);
+            }
+        });
           return view;
+    }
+
+    // set the bottom navigation true before another activity start
+    @Override
+    public void onPause() {
+        ((MainActivity)getActivity()).SetNavigationVisibility(true);
+        super.onPause();
     }
 }
