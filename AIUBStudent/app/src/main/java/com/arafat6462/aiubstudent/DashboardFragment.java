@@ -1,5 +1,6 @@
 package com.arafat6462.aiubstudent;
 
+import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -27,11 +29,14 @@ import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
-
+ 
 public class DashboardFragment extends Fragment {
 
     ImageView calculateCgpaButton;
-    
+    // for progressBar
+    private ProgressBar progressBarBlue,progressBarGreen;
+    ObjectAnimator progressAnimatorBlue,progressAnimatorGreen;
+
     // for radar chart
    private Button RadarButtonCredit,RadarButtonCgpa;
    private boolean RadarButtonCreditBoolean=false,RadarButtonCgpaBoolean=true;
@@ -42,7 +47,7 @@ public class DashboardFragment extends Fragment {
     
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
 
         ////////////////////      radarChart init     /////////////////////
@@ -50,7 +55,21 @@ public class DashboardFragment extends Fragment {
         RadarButtonCgpa = view.findViewById(R.id.RadarButtonCgpa);
         RadarButtonCredit = view.findViewById(R.id.RadarButtonCredit);
 
+/////////////// progress bar /////////////
+        double progressBarBlueProgress = 80*100/148, progressBarGreenProgress = 3.16*100/4; // set this value as credit and cgpa
 
+        progressBarBlue = view.findViewById(R.id.progressBarBlue);
+        progressBarGreen = view.findViewById(R.id.progressBarGreen);
+
+        progressBarBlue.setMax(100 * 100);
+        progressBarGreen.setMax(100 * 100);
+        progressAnimatorBlue = ObjectAnimator.ofInt(progressBarBlue, "progress", progressBarBlue.getProgress(), (int) (progressBarBlueProgress * 100));
+        progressAnimatorGreen = ObjectAnimator.ofInt(progressBarGreen, "progress", progressBarGreen.getProgress(), (int) (progressBarGreenProgress * 100));
+        progressAnimatorBlue.setDuration(1500);
+        progressAnimatorGreen.setDuration(1500);
+        progressAnimatorBlue.start();
+        progressAnimatorGreen.start();
+/////////////// progress bar end /////////////
 
         // we configure the radar chart
      //   chart.setBackgroundColor(Color.rgb(96,125,140)); //background
