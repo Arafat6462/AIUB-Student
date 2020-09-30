@@ -29,26 +29,26 @@ import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
- 
+
 public class DashboardFragment extends Fragment {
 
     ImageView calculateCgpaButton;
     // for progressBar
-    private ProgressBar progressBarBlue,progressBarGreen;
-    ObjectAnimator progressAnimatorBlue,progressAnimatorGreen;
+    private ProgressBar progressBarBlue, progressBarGreen;
+    ObjectAnimator progressAnimatorBlue, progressAnimatorGreen;
 
     // for radar chart
-   private Button RadarButtonCredit,RadarButtonCgpa;
-   private boolean RadarButtonCreditBoolean=false,RadarButtonCgpaBoolean=true;
-   public static final float MAX_CREDIT = 20,MIN_CREDIT = 0, MAX_CGPA = 4,MIN_CGPA = 0;
-   public static final int CreditStepMinToMax = 8,CgpaStepMinToMax = 5;
-   private RadarChart chart;
-   public TextView textView;
-    
+    private Button RadarButtonCredit, RadarButtonCgpa;
+    private boolean RadarButtonCreditBoolean = false, RadarButtonCgpaBoolean = true;
+    public static final float MAX_CREDIT = 20, MIN_CREDIT = 0, MAX_CGPA = 4, MIN_CGPA = 0;
+    public static final int CreditStepMinToMax = 8, CgpaStepMinToMax = 5;
+    private RadarChart chart;
+    public TextView textView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         ////////////////////      radarChart init     /////////////////////
         chart = view.findViewById(R.id.chart);
@@ -56,7 +56,7 @@ public class DashboardFragment extends Fragment {
         RadarButtonCredit = view.findViewById(R.id.RadarButtonCredit);
 
 /////////////// progress bar /////////////
-        double progressBarBlueProgress = 80*100/148, progressBarGreenProgress = 3.16*100/4; // set this value as credit and cgpa
+        double progressBarBlueProgress = 80 * 100 / 148, progressBarGreenProgress = 3.16 * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue = view.findViewById(R.id.progressBarBlue);
         progressBarGreen = view.findViewById(R.id.progressBarGreen);
@@ -72,7 +72,7 @@ public class DashboardFragment extends Fragment {
 /////////////// progress bar end /////////////
 
         // we configure the radar chart
-     //   chart.setBackgroundColor(Color.rgb(96,125,140)); //background
+        //   chart.setBackgroundColor(Color.rgb(96,125,140)); //background
         chart.setBackgroundResource(R.drawable.radarchart_background_color); // set background from drawable instead of direct set
         chart.getDescription().setEnabled(false); // below title description
         chart.setWebLineWidth(1f); // main border line
@@ -83,19 +83,20 @@ public class DashboardFragment extends Fragment {
         chart.setWebAlpha(100); // main border appacity
 
 
-
-
         radarChartButtonCheck();
         radarChartSetData();
-        if (RadarButtonCgpaBoolean){ radarChartPostCgpa();}
-        if (RadarButtonCreditBoolean){ radarChartPostCredit();}
+        if (RadarButtonCgpaBoolean) {
+            radarChartPostCgpa();
+        }
+        if (RadarButtonCreditBoolean) {
+            radarChartPostCredit();
+        }
 
 
         ////////////////////      radarChart     /////////////////////
 
 
-
-  ///////////////////////////// calculate cgpa //////////////
+        ///////////////////////////// calculate cgpa //////////////
         calculateCgpaButton = view.findViewById(R.id.calculateCgpaButtonImageView);
         calculateCgpaButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +104,7 @@ public class DashboardFragment extends Fragment {
 
                 // changing the fragment
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container,new ResultCalculationFragment());
+                fragmentTransaction.replace(R.id.fragment_container, new ResultCalculationFragment());
                 fragmentTransaction.commit();
 
 
@@ -115,22 +116,18 @@ public class DashboardFragment extends Fragment {
     }
 
 
-
-
-
     private void radarChartButtonCheck() {
 
         RadarButtonCgpa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                RadarButtonCgpaBoolean=true;
-                RadarButtonCreditBoolean=false;
+                RadarButtonCgpaBoolean = true;
+                RadarButtonCreditBoolean = false;
                 RadarButtonCgpa.setBackgroundResource(R.drawable.radarchart_button_pressed);
                 RadarButtonCredit.setBackgroundResource(R.drawable.radarchart_button_default);
                 radarChartPostCgpa();
                 radarChartSetData();
-
 
 
             }
@@ -139,8 +136,8 @@ public class DashboardFragment extends Fragment {
         RadarButtonCredit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RadarButtonCreditBoolean=true;
-                RadarButtonCgpaBoolean=false;
+                RadarButtonCreditBoolean = true;
+                RadarButtonCgpaBoolean = false;
                 RadarButtonCredit.setBackgroundResource(R.drawable.radarchart_button_pressed);
                 RadarButtonCgpa.setBackgroundResource(R.drawable.radarchart_button_default);
                 radarChartPostCredit();
@@ -181,12 +178,10 @@ public class DashboardFragment extends Fragment {
         AllSemesterCREDIT.add(new RadarEntry(16));
 
 
-
-
         // we create two radar data sets objects with these data
         RadarDataSet set1 = new RadarDataSet(AllSemesterCGPA, "All semester CGPA");
-        set1.setColor(Color.argb(255,0,220,80));// category one border color and fill color
-        set1.setFillColor(Color.argb(100,0,200,100));
+        set1.setColor(Color.argb(255, 0, 220, 80));// category one border color and fill color
+        set1.setFillColor(Color.argb(100, 0, 200, 100));
         set1.setDrawFilled(true); // fill the circle of radar
         set1.setFillAlpha(100); // fill  alpha between 255
         set1.setLineWidth(2f);  // border line width
@@ -195,8 +190,8 @@ public class DashboardFragment extends Fragment {
 
 
         RadarDataSet set2 = new RadarDataSet(AllSemesterCREDIT, "All semester CREDIT");
-        set2.setColor(Color.argb(255,40,160,220));
-        set2.setFillColor(Color.argb(100,40,160,220));
+        set2.setColor(Color.argb(255, 40, 160, 220));
+        set2.setFillColor(Color.argb(100, 40, 160, 220));
         set2.setDrawFilled(true);
         set2.setFillAlpha(100);
         set2.setLineWidth(2f);
@@ -209,18 +204,18 @@ public class DashboardFragment extends Fragment {
 
         // we create Radar Data object which will be added to the radar chart for rendering
         // load radar graph based on user choice
-        RadarData data = new RadarData( );
-        if (RadarButtonCgpaBoolean){
+        RadarData data = new RadarData();
+        if (RadarButtonCgpaBoolean) {
             data.addDataSet(set1);
         }
-        if (RadarButtonCreditBoolean){
+        if (RadarButtonCreditBoolean) {
             data.addDataSet(set2);
         }
 
 
         data.setValueTextSize(10f);
         data.setDrawValues(true); // decide toggle value hide or show
-        data.setValueTextColor(Color.argb(255,0,25,40)); // toggle value text color
+        data.setValueTextColor(Color.argb(255, 0, 25, 40)); // toggle value text color
 
         chart.setData(data);
         chart.invalidate();
@@ -228,14 +223,10 @@ public class DashboardFragment extends Fragment {
     }
 
 
-
-
-
-
     private void radarChartPostCgpa() {
 
         // animate the chart when first shown.
-        chart.animateXY(1200,2200,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
+        chart.animateXY(1200, 2200, Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad);
 
         // we define axis
         XAxis xAxis = chart.getXAxis();
@@ -247,10 +238,10 @@ public class DashboardFragment extends Fragment {
             // we will compare two employees on a radar chart
             // so we define qualities to compare
             // you can added 15,20 semester and code will automatic keep value from beginning
-            private String[] qualities = new String[]{"semester-1","semester-2", "semester-3", " semester-4","semester-5","semester-6","semester-7",
-                    "semester-8", " semester-9","semester-10","semester-11","semester-12", "semester-13", " semester-14","semester-15","semester-16",
-                    "semester-17", "semester-18", " semester-19","semester-20","semester-21","semester-22", "semester-23", " semester-24","semester-25",
-                    "semester-26","semester-27", "semester-28", " semester-29","semester-30"};
+            private String[] qualities = new String[]{"semester-1", "semester-2", "semester-3", " semester-4", "semester-5", "semester-6", "semester-7",
+                    "semester-8", " semester-9", "semester-10", "semester-11", "semester-12", "semester-13", " semester-14", "semester-15", "semester-16",
+                    "semester-17", "semester-18", " semester-19", "semester-20", "semester-21", "semester-22", "semester-23", " semester-24", "semester-25",
+                    "semester-26", "semester-27", "semester-28", " semester-29", "semester-30"};
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -262,7 +253,7 @@ public class DashboardFragment extends Fragment {
 
         // Y axis
         YAxis yAxis = chart.getYAxis();
-        yAxis.setLabelCount(CgpaStepMinToMax,false);
+        yAxis.setLabelCount(CgpaStepMinToMax, false);
         yAxis.setTextSize(10f);
         yAxis.setAxisMinimum(MIN_CGPA);// we define min and max for axis
         yAxis.setAxisMaximum(MAX_CGPA);
@@ -282,15 +273,10 @@ public class DashboardFragment extends Fragment {
     }
 
 
-
-
-
-
-
     private void radarChartPostCredit() {
 
         // animate the chart when first shown.
-        chart.animateXY(1200,2200,Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad  );
+        chart.animateXY(1200, 2200, Easing.EasingOption.EaseInOutQuad, Easing.EasingOption.EaseInOutQuad);
 
         // we define axis
         XAxis xAxis = chart.getXAxis();
@@ -302,10 +288,10 @@ public class DashboardFragment extends Fragment {
             // we will compare two employees on a radar chart
             // so we define qualities to compare
             // you can added 15,20 semester and code will automatic keep value from beginning
-            private String[] qualities = new String[]{"semester-1","semester-2", "semester-3", " semester-4","semester-5","semester-6","semester-7",
-                    "semester-8", " semester-9","semester-10","semester-11","semester-12", "semester-13", " semester-14","semester-15","semester-16",
-                    "semester-17", "semester-18", " semester-19","semester-20","semester-21","semester-22", "semester-23", " semester-24","semester-25",
-                    "semester-26","semester-27", "semester-28", " semester-29","semester-30"};
+            private String[] qualities = new String[]{"semester-1", "semester-2", "semester-3", " semester-4", "semester-5", "semester-6", "semester-7",
+                    "semester-8", " semester-9", "semester-10", "semester-11", "semester-12", "semester-13", " semester-14", "semester-15", "semester-16",
+                    "semester-17", "semester-18", " semester-19", "semester-20", "semester-21", "semester-22", "semester-23", " semester-24", "semester-25",
+                    "semester-26", "semester-27", "semester-28", " semester-29", "semester-30"};
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -317,7 +303,7 @@ public class DashboardFragment extends Fragment {
 
         // Y axis
         YAxis yAxis = chart.getYAxis();
-        yAxis.setLabelCount(CreditStepMinToMax,false);
+        yAxis.setLabelCount(CreditStepMinToMax, false);
         yAxis.setTextSize(10f);
         yAxis.setAxisMinimum(MIN_CREDIT);// we define min and max for axis
         yAxis.setAxisMaximum(MAX_CREDIT);

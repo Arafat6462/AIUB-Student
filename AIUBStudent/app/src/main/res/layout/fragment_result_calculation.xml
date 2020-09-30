@@ -37,8 +37,9 @@
 
                     <ImageView
                         android:id="@+id/back_button_on_calculate_result"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="5dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="15dp"
                         android:src="@drawable/ic_baseline_keyboard_backspace_24" />
@@ -71,8 +72,8 @@
                     android:layout_gravity="center_horizontal">
 
                     <ProgressBar
-                        android:id="@+id/progressBarGreen"
-                        style="@style/circularProgressBarGreen"
+                        android:id="@+id/progressBarYellow"
+                        style="@style/circularProgressBarYellow"
                         android:layout_width="350dp"
                         android:layout_height="0dp"
 
@@ -83,21 +84,34 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ProgressBar
-                        android:id="@+id/progressBarBlue"
-                        style="@style/circularProgressBarBlue"
+                        android:id="@+id/progressBarGreen"
+                        style="@style/circularProgressBarGreen"
                         android:layout_width="300dp"
                         android:layout_height="300dp"
                         android:progress="90"
 
+                        app:layout_constraintBottom_toBottomOf="@+id/progressBarYellow"
+                        app:layout_constraintEnd_toEndOf="@+id/progressBarYellow"
+                        app:layout_constraintStart_toStartOf="@+id/progressBarYellow"
+                        app:layout_constraintTop_toTopOf="@+id/progressBarYellow" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarBlue"
+                        style="@style/circularProgressBarBlue"
+                        android:layout_width="250dp"
+                        android:layout_height="0dp"
+
+                        android:progress="90"
                         app:layout_constraintBottom_toBottomOf="@+id/progressBarGreen"
                         app:layout_constraintEnd_toEndOf="@+id/progressBarGreen"
                         app:layout_constraintStart_toStartOf="@+id/progressBarGreen"
                         app:layout_constraintTop_toTopOf="@+id/progressBarGreen" />
 
+
                     <ImageView
                         android:id="@+id/calculateCgpaButtonImageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:src="@drawable/progressbar_center_image"
                         app:layout_constraintBottom_toBottomOf="@id/progressBarBlue"
                         app:layout_constraintEnd_toEndOf="@+id/progressBarBlue"
@@ -134,7 +148,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.5" />
+                        app:layout_constraintGuide_percent=".32" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent=".66" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="wrap_content"
@@ -143,6 +164,64 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/yellow_progressbar_indicator_dot"
+
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toEndOf="@+id/imageView5"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/student_this_semester_cgpa"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3.5"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/max_this_semester_cgpa_four"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="/4.00" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/title_of_total_gpa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_weight="1"
+                            android:text="GPA"
+                            app:layout_constraintStart_toEndOf="@+id/imageView5"
+                            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                        app:layout_constraintStart_toStartOf="@+id/guideline"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
@@ -198,7 +277,7 @@
                         android:layout_height="match_parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/guideline"
+                        app:layout_constraintStart_toStartOf="@+id/guideline2"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
@@ -255,11 +334,11 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:background="#9C27B0"
-                android:layout_width="match_parent"
-                android:layout_height="800dp"
+                 android:layout_width="match_parent"
+                android:layout_height="1000dp"
                 android:layout_margin="15dp"
                 android:id="@+id/ResultCalculationRecyclerView"
+                android:nestedScrollingEnabled="false"
                 >
 
             </androidx.recyclerview.widget.RecyclerView>

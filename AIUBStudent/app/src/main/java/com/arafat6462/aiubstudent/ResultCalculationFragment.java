@@ -1,5 +1,6 @@
 package com.arafat6462.aiubstudent;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,9 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 
 public class ResultCalculationFragment extends Fragment {
+
+    // for progressBar
+    private ProgressBar progressBarBlue, progressBarGreen,progressBarYellow;
+    ObjectAnimator progressAnimatorBlue, progressAnimatorGreen,progressAnimatorYellow;
+
+
     // find all image,string and other all elements
     int[] images = {R.drawable.green_progressbar_indicator_dot, R.drawable.login_page_image_submit, R.drawable.blue_progressbar_indicator_dot,
             R.drawable.green_progressbar_indicator_dot, R.drawable.login_page_image_submit, R.drawable.blue_progressbar_indicator_dot};
@@ -22,10 +30,32 @@ public class ResultCalculationFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_result_calculation, container, false);
+
+
+        /////////////// progress bar /////////////
+        double progressBarBlueProgress = 80 * 100 / 148, progressBarGreenProgress = 3.16 * 100 / 4, progressBarYellowProgress = 3.5 * 100 / 4; // set this value as credit and cgpa
+
+        progressBarBlue = view.findViewById(R.id.progressBarBlue);
+        progressBarGreen = view.findViewById(R.id.progressBarGreen);
+        progressBarYellow = view.findViewById(R.id.progressBarYellow);
+
+        progressBarBlue.setMax(100 * 100);
+        progressBarGreen.setMax(100 * 100);
+        progressBarYellow.setMax(100 * 100);
+        progressAnimatorBlue = ObjectAnimator.ofInt(progressBarBlue, "progress", progressBarBlue.getProgress(), (int) (progressBarBlueProgress * 100));
+        progressAnimatorGreen = ObjectAnimator.ofInt(progressBarGreen, "progress", progressBarGreen.getProgress(), (int) (progressBarGreenProgress * 100));
+        progressAnimatorYellow = ObjectAnimator.ofInt(progressBarYellow, "progress", progressBarYellow.getProgress(), (int) (progressBarYellowProgress * 100));
+        progressAnimatorBlue.setDuration(1500);
+        progressAnimatorGreen.setDuration(1500);
+        progressAnimatorYellow.setDuration(1500);
+        progressAnimatorBlue.start();
+        progressAnimatorGreen.start();
+        progressAnimatorYellow.start();
+/////////////// progress bar end /////////////
+
 
         ///////////
         recyclerView = view.findViewById(R.id.ResultCalculationRecyclerView);
