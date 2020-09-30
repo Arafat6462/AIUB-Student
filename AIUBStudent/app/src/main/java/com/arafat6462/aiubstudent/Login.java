@@ -2,6 +2,7 @@ package com.arafat6462.aiubstudent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +18,13 @@ public class Login extends AppCompatActivity {
 
     private  ImageView loginButton;
     private EditText userName,password;
+ public static Activity loginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginActivity = this; // for finish this activity from main activity when back press.
         // for full screen, it will hide status bar from login page
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
