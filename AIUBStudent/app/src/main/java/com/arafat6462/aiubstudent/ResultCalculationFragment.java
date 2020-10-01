@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 
 
 public class ResultCalculationFragment extends Fragment {
@@ -27,7 +28,6 @@ public class ResultCalculationFragment extends Fragment {
     String[] title, description;
     ResultCalculationFragmentAdapter resultCalculationFragmentAdapter;
     RecyclerView recyclerView;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

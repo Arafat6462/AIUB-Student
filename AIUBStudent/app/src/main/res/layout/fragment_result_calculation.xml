@@ -338,7 +338,9 @@
                 android:layout_height="1000dp"
                 android:id="@+id/ResultCalculationRecyclerView"
                 android:nestedScrollingEnabled="false"
-                >
+
+                android:layout_marginTop="30dp"
+                 >
 
             </androidx.recyclerview.widget.RecyclerView>
 
