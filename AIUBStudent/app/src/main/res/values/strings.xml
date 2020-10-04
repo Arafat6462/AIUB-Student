@@ -8,12 +8,12 @@
 
     <!--    for RecyclerView-->
     <string-array name="country_desc">
-        <item>Australia is Beautiful</item>
-        <item>Bangladesh is Beautiful</item>
-        <item>Bhutan is Beautiful</item>
-        <item>Canada is Beautiful</item>
-        <item>China is Beautiful</item>
-        <item>Denmark is Beautiful</item>
+        <item>ADVANCE DATABASE MANAGEMENT SYSTEM </item>
+        <item>COMPILER DESIGN</item>
+        <item>ELECTRONIC DEVICES</item>
+        <item>ELECTRONIC DEVICES LAB	</item>
+        <item>ENGINEERING MANAGEMENT	</item>
+        <item>MATRICES, VECTORS, FOURIER ANALYSIS</item>
      </string-array>
 
     <string-array name="country_Name">

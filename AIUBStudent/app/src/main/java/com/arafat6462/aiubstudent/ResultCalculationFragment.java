@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,13 +22,13 @@ public class ResultCalculationFragment extends Fragment {
     private ProgressBar progressBarBlue, progressBarGreen,progressBarYellow;
     ObjectAnimator progressAnimatorBlue, progressAnimatorGreen,progressAnimatorYellow;
 
+    RecyclerView recyclerView;
+    ResultCalculationFragmentAdapter resultCalculationFragmentAdapter;
 
     // find all image,string and other all elements
     int[] images = {R.drawable.green_progressbar_indicator_dot, R.drawable.login_page_image_submit, R.drawable.blue_progressbar_indicator_dot,
             R.drawable.green_progressbar_indicator_dot, R.drawable.login_page_image_submit, R.drawable.blue_progressbar_indicator_dot};
     String[] title, description;
-    ResultCalculationFragmentAdapter resultCalculationFragmentAdapter;
-    RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,11 +63,15 @@ public class ResultCalculationFragment extends Fragment {
         title = getResources().getStringArray(R.array.country_Name); // added all country name in title array
         description = getResources().getStringArray(R.array.country_desc);
 
-        // send data to adapter class
+        // send data to adapter class by default constructor
         resultCalculationFragmentAdapter = new ResultCalculationFragmentAdapter(this.getActivity(), title, description, images);
         //set adapter
-        recyclerView.setAdapter(resultCalculationFragmentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recyclerView.setAdapter(resultCalculationFragmentAdapter);
+
+        // Decoration the recycler view divided row
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this.getContext(),DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
 
         // hide the bottom navigation & top status bar in calculate cgpa fragment from main activity.

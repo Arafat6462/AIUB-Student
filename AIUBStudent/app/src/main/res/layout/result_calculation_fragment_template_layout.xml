@@ -6,6 +6,8 @@
      android:orientation="vertical"
      >
 
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,9 +20,7 @@
         app:cardElevation="5dp"
         android:outlineSpotShadowColor="#1A91DD"
         android:outlineAmbientShadowColor="#1A91DD"
-
-
-
+        app:cardBackgroundColor="#E5EFF4"
         >
 
         <LinearLayout
@@ -28,52 +28,42 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
 
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:src="@drawable/app_logo"
-                android:id="@+id/appLogoInTemplate"
-                />
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                 android:orientation="vertical">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/titleInTemplate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="title"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="5dp"
-                    android:textSize="30sp"/>
                 <TextView
                     android:id="@+id/descriptionInTemplate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="description"
-                    android:layout_marginTop="5dp"
-                    android:textSize="20sp"/>
+                    android:gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="1"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    />
 
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Retake"
+                    android:textColor="#99707070"
+                    android:buttonTint="#99707070"
+                    android:textSize="12sp"
+                      />
 
             </LinearLayout>
-        </LinearLayout>
-            <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:progressBackgroundTint="@color/customButtonBorderLightGray"
-                android:progressTint="#FF5722"
-                />
 
 
 
@@ -96,14 +86,14 @@
 
 
 
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="start"
-
-                    >
+                    android:gravity="start">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -116,7 +106,6 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -127,14 +116,15 @@
                     </LinearLayout>
                 </LinearLayout>
 
+
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="center"
-
-                    >
+                    android:gravity="center">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -166,9 +156,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right"
-
-                    >
+                    android:gravity="right">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -193,14 +181,13 @@
                 </LinearLayout>
 
 
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right"
-
-                    >
+                    android:gravity="right">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -213,7 +200,6 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -223,14 +209,15 @@
                             android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
+
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right"
-
-                    >
+                    android:gravity="right">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -243,7 +230,6 @@
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -255,14 +241,14 @@
                 </LinearLayout>
 
 
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right"
-
-                    >
+                    android:gravity="right">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -275,7 +261,6 @@
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -287,14 +272,14 @@
                 </LinearLayout>
 
 
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right"
-
-                    >
+                    android:gravity="right">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -303,11 +288,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                         android:text="B"
+                        android:text="B"
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -319,13 +303,14 @@
                 </LinearLayout>
 
 
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right"
-                    >
+                    android:gravity="right">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -338,7 +323,6 @@
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -350,13 +334,14 @@
                 </LinearLayout>
 
 
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right"
-                    >
+                    android:gravity="right">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -369,7 +354,6 @@
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -382,14 +366,14 @@
 
 
 
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right"
-                    >
-
+                    android:gravity="right">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -402,7 +386,6 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -411,27 +394,15 @@
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
-
                 </LinearLayout>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             </LinearLayout>
+
+
 
 
             <SeekBar
@@ -442,20 +413,165 @@
                 android:layout_height="wrap_content"
                 android:max="9"
                 android:layout_marginBottom="5dp"
-
                 android:progress="3"
-                android:splitTrack="false"
+                android:splitTrack="false" />
 
 
 
 
-                   />
+
+
+
+
+
+
+            <!--            retake part-->
+
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/retake_LinearLayout_part">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Previous Result of This Course"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#FF9800"/>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_horizontal"
+                            android:weightSum="3"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="5dp">
+
+
+
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                android:gravity="start">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:textAlignment="viewStart"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="UW"
+                                        android:textAlignment="viewStart"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                android:gravity="center">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:textAlignment="viewStart"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="F"
+                                        android:textAlignment="viewStart"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                android:gravity="right">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="D"
+                                        android:textAlignment="viewStart"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="2.25"
+                                        android:textAlignment="viewStart"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+
+
+
+                        </LinearLayout>
+
+                        <SeekBar
+                            android:layout_marginTop="3dp"
+                            android:id="@+id/seekBar2"
+                            style="@style/seekbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="2"
+                            android:layout_marginBottom="5dp"
+                            android:progress="2"
+                            android:splitTrack="false" />
+
+            </LinearLayout>
+
+
+
+
+
 
         </LinearLayout>
-
-
-
-
     </androidx.cardview.widget.CardView>
-
 </LinearLayout>

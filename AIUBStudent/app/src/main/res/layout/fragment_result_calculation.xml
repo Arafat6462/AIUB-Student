@@ -334,7 +334,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                 android:layout_width="match_parent"
+                android:layout_width="match_parent"
                 android:layout_height="1000dp"
                 android:id="@+id/ResultCalculationRecyclerView"
                 android:nestedScrollingEnabled="false"
