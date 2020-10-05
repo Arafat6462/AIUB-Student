@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -89,6 +90,7 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
         ////////////////  show hide retake //////////////
         LinearLayout linearLayout;
         CheckBox checkBox;
+        SeekBar seekBar2;
         ////////////////  show hide retake //////////////
 
         // now all layout file convert to  view. and  this view came to ViewHolder class and now it is in itemView.
@@ -100,6 +102,7 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
             // itemView.setOnClickListener(this);
             checkBox = itemView.findViewById(R.id.checkBox2);
             linearLayout = itemView.findViewById(R.id.retake_LinearLayout_part);
+            seekBar2 = itemView.findViewById(R.id.seekBar2);
             linearLayout.setVisibility(View.GONE); // initial all gone
             checkBox.setOnClickListener(this); // add click listener
 
@@ -115,8 +118,10 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
         public void onClick(View view) {
             if (checkBox.isChecked()) {
                 linearLayout.setVisibility(View.VISIBLE);
+
             } else {
                 linearLayout.setVisibility(View.GONE);
+                seekBar2.setProgress(0); // progress will 0 when close the retake option
             }
 
           //  Log.d("click from view holder", "onClick: ");

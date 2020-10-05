@@ -30,8 +30,8 @@
                     android:radius="15dp" />
                 <gradient
                     android:angle="45"
-                    android:startColor="#FFFF00"
-                     android:endColor="#FF7600"
+                    android:startColor="#D618DB"
+                     android:endColor="#FF002A"
                     android:centerY="0.5"
                     android:type="linear"
                     />
