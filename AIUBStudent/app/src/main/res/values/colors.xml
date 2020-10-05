@@ -34,6 +34,11 @@
         <item name="android:progressDrawable">@drawable/seekbar_style</item>
     </style>
 
+    <style name="seekbar2">
+        <item name="android:thumb">@drawable/seekbar_style_thumb_2</item>
+        <item name="android:progressDrawable">@drawable/seekbar_style_2</item>
+    </style>
+
 
 
 </resources>

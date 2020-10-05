@@ -438,8 +438,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Previous Result of This Course"
-                    android:layout_marginStart="10dp"
+                    android:text="Previous Result of This Retake Course"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
                     android:textColor="#FF9800"/>
 
 
@@ -557,12 +558,12 @@
                         <SeekBar
                             android:layout_marginTop="3dp"
                             android:id="@+id/seekBar2"
-                            style="@style/seekbar"
+                            style="@style/seekbar2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:max="2"
                             android:layout_marginBottom="5dp"
-                            android:progress="2"
+                            android:progress="0"
                             android:splitTrack="false" />
 
             </LinearLayout>
