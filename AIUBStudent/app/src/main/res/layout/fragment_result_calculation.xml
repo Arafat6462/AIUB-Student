@@ -120,16 +120,16 @@
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_width="80dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
 
 
-                        android:maxLines="2"
+                        android:maxLines="4"
                         android:minLines="2"
-                        android:text="Calculate cgpa"
+                        android:text="Tab to See Calculated Result"
                         android:textAlignment="center"
                         android:textColor="@color/circularProgressbarForegroundGreen"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/calculateCgpaButtonImageView"
                         app:layout_constraintEnd_toEndOf="@+id/calculateCgpaButtonImageView"
@@ -189,6 +189,7 @@
                                 android:id="@+id/student_this_semester_cgpa"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:maxLength="4"
                                 android:text="3.5"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
@@ -250,7 +251,8 @@
                                 android:text="3.16"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:maxLength="4"/>
 
                             <TextView
                                 android:id="@+id/max_cgpa_four"
@@ -300,13 +302,14 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                android:id="@+id/textView2"
+                                android:id="@+id/total_credit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="80"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:maxLength="4"/>
 
                             <TextView
                                 android:id="@+id/textView3"

@@ -1,6 +1,7 @@
 package com.arafat6462.aiubstudent;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,12 +9,13 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.SeekBar;
+import android.widget.TextView;
 
 
 public class ResultCalculationFragment extends Fragment {
@@ -24,6 +26,12 @@ public class ResultCalculationFragment extends Fragment {
 
     RecyclerView recyclerView;
     ResultCalculationFragmentAdapter resultCalculationFragmentAdapter;
+    int[] seekBarValue = new int[5], seekBarValueRetake = new int[5];
+    public static int temp = 0;
+    ImageView imageView55;
+    private TextView thisSemesterGpa, totalCgpa, totalCredit;
+
+
 
     // find all image,string and other all elements
     int[] images = {R.drawable.green_progressbar_indicator_dot, R.drawable.login_page_image_submit, R.drawable.blue_progressbar_indicator_dot,
@@ -34,6 +42,17 @@ public class ResultCalculationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_result_calculation, container, false);
+
+        ////////////// set all as 0 at initial /////////////////
+        for (int i=0; i<seekBarValue.length; i++){
+            seekBarValue[i] = 0;
+            seekBarValueRetake[i] = 0;
+        }
+        ////////////// set all as 0 at initial /////////////////
+
+        thisSemesterGpa = view.findViewById(R.id.student_this_semester_cgpa);
+        totalCgpa = view.findViewById(R.id.student_current_cgpa);
+        totalCredit = view.findViewById(R.id.total_credit);
 
 
         /////////////// progress bar /////////////
@@ -55,6 +74,15 @@ public class ResultCalculationFragment extends Fragment {
         progressAnimatorBlue.start();
         progressAnimatorGreen.start();
         progressAnimatorYellow.start();
+
+        ImageView imageView1 = view.findViewById(R.id.calculateCgpaButtonImageView);
+            imageView1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    updateResult();
+                }
+            });
+
 /////////////// progress bar end /////////////
 
 
@@ -85,8 +113,62 @@ public class ResultCalculationFragment extends Fragment {
                 ((MainActivity) getActivity()).SetNavigationVisibilityAndBackButton(true);
             }
         });
-        return view;
+        imageView55 = view.findViewById(R.id.calculateCgpaButtonImageView);
+
+         return view;
     }
+
+    public void updateResult() {
+
+
+        /////////////// progress bar update /////////////
+        double progressBarBlueProgress = (80 + temp)* 100 / 148, progressBarGreenProgress = (3.16+ temp*.01) * 100 / 4, progressBarYellowProgress = (3.5+ temp*.01) * 100 / 4; // set this value as credit and cgpa
+
+        progressBarBlue.setMax(100 * 100);
+        progressBarGreen.setMax(100 * 100);
+        progressBarYellow.setMax(100 * 100);
+        progressAnimatorBlue = ObjectAnimator.ofInt(progressBarBlue, "progress", progressBarBlue.getProgress(), (int) (progressBarBlueProgress * 100));
+        progressAnimatorGreen = ObjectAnimator.ofInt(progressBarGreen, "progress", progressBarGreen.getProgress(), (int) (progressBarGreenProgress * 100));
+        progressAnimatorYellow = ObjectAnimator.ofInt(progressBarYellow, "progress", progressBarYellow.getProgress(), (int) (progressBarYellowProgress * 100));
+        progressAnimatorBlue.setDuration(1500);
+        progressAnimatorGreen.setDuration(1500);
+        progressAnimatorYellow.setDuration(1500);
+        progressAnimatorBlue.start();
+        progressAnimatorGreen.start();
+        progressAnimatorYellow.start();
+
+        totalCgpa.setText(String.valueOf(3.16+temp*.01)); // converting double to string.
+        totalCredit.setText(String.valueOf(80 + temp));
+        thisSemesterGpa.setText(String.valueOf(3.5+temp*.01));
+
+/////////////// progress bar update end /////////////
+    }
+
+    ////////////  get value of seekBar from adapter /////////////
+    public void setSeekBarValue(Context context, int position, int value ){
+        seekBarValue[position] = value;
+        Log.d("value", "seekBarValue : "+ seekBarValue[position]);
+        temp += seekBarValue[position];
+        Log.d("value", "temp : "+ temp);
+
+
+
+    }
+
+
+
+    public void setSeekBarValueRetake(Context context, int position, int value ){
+        seekBarValueRetake[position] = value;
+        Log.d("value", "seekBarValueRetake : "+ seekBarValueRetake[position]);
+        temp -= seekBarValue[position]*3;
+
+
+    }
+
+
+    ////////////  get value of seekBar from adapter /////////////
+
+
 
 //    // set the bottom navigation true before another activity start
     // move code to onBackpress

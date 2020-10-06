@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +23,8 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
     Context context;
     String[] title, description;
     int[] images;
+    ResultCalculationFragment resultCalculationFragment = new ResultCalculationFragment();
+
 
     // for receive date from fragment layout class
     public ResultCalculationFragmentAdapter(Context context, String[] title, String[] description, int[] images) {
@@ -108,12 +109,14 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
 
             linearLayout.setVisibility(View.GONE); // initial all gone
 
+
             checkBox.setOnClickListener(this); // add click listener
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                    Log.d("seekbar", "onProgressChanged at : "+getAdapterPosition()+" = "+ i);
-                 }
+                    Log.d("seekbar", "onProgressChanged at : " + getAdapterPosition() + " = " + i);
+                    resultCalculationFragment.setSeekBarValue(context, getAdapterPosition(), i);
+                  }
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
@@ -126,6 +129,23 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
                 }
             });
 
+            seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    Log.d("seekbar", "onProgressChanged at : " + getAdapterPosition() + " = " + i);
+                    resultCalculationFragment.setSeekBarValueRetake(context, getAdapterPosition(), i);
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
 
             ////////////////  show hide retake //////////////
 
