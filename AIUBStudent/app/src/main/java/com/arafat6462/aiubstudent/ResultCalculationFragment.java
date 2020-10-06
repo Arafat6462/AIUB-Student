@@ -88,10 +88,12 @@ public class ResultCalculationFragment extends Fragment {
         return view;
     }
 
-    // set the bottom navigation true before another activity start
-    @Override
-    public void onPause() {
-        ((MainActivity) getActivity()).SetNavigationVisibilityAndBackButton(true);
-        super.onPause();
-    }
+//    // set the bottom navigation true before another activity start
+    // move code to onBackpress
+
+//    @Override
+//    public void onPause() {
+//        ((MainActivity) getActivity()).SetNavigationVisibilityAndBackButton(true);
+//        super.onPause();
+//    }
 }

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -90,21 +91,41 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
         ////////////////  show hide retake //////////////
         LinearLayout linearLayout;
         CheckBox checkBox;
-        SeekBar seekBar2;
+        SeekBar seekBar,seekBar2;
         ////////////////  show hide retake //////////////
 
         // now all layout file convert to  view. and  this view came to ViewHolder class and now it is in itemView.
         // itemView is now your row template layout.
         public ResultCalculationFragmentViewHolder(@NonNull View itemView) {
             super(itemView);
-            ////////////////  show hide retake //////////////
+            ////////////////  show hide retake and seekBar,checkBox //////////////
 
             // itemView.setOnClickListener(this);
             checkBox = itemView.findViewById(R.id.checkBox2);
             linearLayout = itemView.findViewById(R.id.retake_LinearLayout_part);
+            seekBar = itemView.findViewById(R.id.seekBar);
             seekBar2 = itemView.findViewById(R.id.seekBar2);
+
             linearLayout.setVisibility(View.GONE); // initial all gone
+
             checkBox.setOnClickListener(this); // add click listener
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    Log.d("seekbar", "onProgressChanged at : "+getAdapterPosition()+" = "+ i);
+                 }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
+
 
             ////////////////  show hide retake //////////////
 

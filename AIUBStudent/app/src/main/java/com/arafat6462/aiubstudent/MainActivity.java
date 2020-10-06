@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
              Login.loginActivity.finish(); // also finish the login activity
              super.onBackPressed();
          } else {
+            SetNavigationVisibilityAndBackButton(true); // for from result calculation to dashboard show bottom navigation instead of onPause method
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
             bottomNavigationView.setSelectedItemId(R.id.nav_dashboard);
         }

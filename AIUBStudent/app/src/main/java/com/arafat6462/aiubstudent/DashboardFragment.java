@@ -101,11 +101,14 @@ public class DashboardFragment extends Fragment {
         calculateCgpaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // changing the fragment
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new ResultCalculationFragment());
-                fragmentTransaction.commit();
+                ResultCalculationFragment resultCalculationFragment = new ResultCalculationFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,resultCalculationFragment,"findThisFragment").addToBackStack(null).commit();
+
+                // this will also work for changing fragment
+ //               FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment_container, new ResultCalculationFragment());
+//                fragmentTransaction.commit();
 
 
             }
