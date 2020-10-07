@@ -26,7 +26,7 @@ public class ResultCalculationFragment extends Fragment {
 
     RecyclerView recyclerView;
     ResultCalculationFragmentAdapter resultCalculationFragmentAdapter;
-    int[] seekBarValue = new int[5], seekBarValueRetake = new int[5];
+    int[] seekBarValue = new int[6], seekBarValueRetake = new int[6];
     public static int temp = 0;
     ImageView imageView55;
     private TextView thisSemesterGpa, totalCgpa, totalCredit;
@@ -122,7 +122,9 @@ public class ResultCalculationFragment extends Fragment {
 
 
         /////////////// progress bar update /////////////
-        double progressBarBlueProgress = (80 + temp)* 100 / 148, progressBarGreenProgress = (3.16+ temp*.01) * 100 / 4, progressBarYellowProgress = (3.5+ temp*.01) * 100 / 4; // set this value as credit and cgpa
+        double  progressBarBlueProgress = (80 + temp)* 100 / 148,
+                progressBarGreenProgress = (3.16+ temp*.01) * 100 / 4,
+                progressBarYellowProgress = (3.5+ temp*.01) * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue.setMax(100 * 100);
         progressBarGreen.setMax(100 * 100);
@@ -147,7 +149,7 @@ public class ResultCalculationFragment extends Fragment {
     ////////////  get value of seekBar from adapter /////////////
     public void setSeekBarValue(Context context, int position, int value ){
         seekBarValue[position] = value;
-        Log.d("value", "seekBarValue : "+ seekBarValue[position]);
+        Log.d("value", "seekBarValue : "+ seekBarValue[position]+ " position : "+ position);
         temp += seekBarValue[position];
         Log.d("value", "temp : "+ temp);
 
