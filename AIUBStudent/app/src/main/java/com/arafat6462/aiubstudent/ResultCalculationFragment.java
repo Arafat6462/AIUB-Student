@@ -24,12 +24,18 @@ public class ResultCalculationFragment extends Fragment {
     private ProgressBar progressBarBlue, progressBarGreen,progressBarYellow;
     ObjectAnimator progressAnimatorBlue, progressAnimatorGreen,progressAnimatorYellow;
 
+    ResultCalculation resultCalculation = new ResultCalculation();
+
     RecyclerView recyclerView;
     ResultCalculationFragmentAdapter resultCalculationFragmentAdapter;
-    int[] seekBarValue = new int[6], seekBarValueRetake = new int[6];
-    public static int temp = 0;
-    ImageView imageView55;
-    private TextView thisSemesterGpa, totalCgpa, totalCredit;
+   static int[] seekBarValue = new int[6];
+   static int[] seekBarValueRetake = new int[6];
+   static int[] perCourseCredit = {3,3,3,3,3,3};
+   ImageView imageView55;
+   private TextView thisSemesterGpa, totalCgpa, totalCredit;
+   ////////// temporary ///////////
+   double  completedCgpa = 3.16, currentGpa = 0.0,completedCredit = 80;
+    ////////// temporary ///////////
 
 
 
@@ -50,13 +56,14 @@ public class ResultCalculationFragment extends Fragment {
         }
         ////////////// set all as 0 at initial /////////////////
 
+
         thisSemesterGpa = view.findViewById(R.id.student_this_semester_cgpa);
         totalCgpa = view.findViewById(R.id.student_current_cgpa);
         totalCredit = view.findViewById(R.id.total_credit);
 
 
         /////////////// progress bar /////////////
-        double progressBarBlueProgress = 80 * 100 / 148, progressBarGreenProgress = 3.16 * 100 / 4, progressBarYellowProgress = 3.5 * 100 / 4; // set this value as credit and cgpa
+        double progressBarBlueProgress = completedCredit * 100 / 148, progressBarGreenProgress = completedCgpa * 100 / 4, progressBarYellowProgress = currentGpa * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue = view.findViewById(R.id.progressBarBlue);
         progressBarGreen = view.findViewById(R.id.progressBarGreen);
@@ -75,10 +82,18 @@ public class ResultCalculationFragment extends Fragment {
         progressAnimatorGreen.start();
         progressAnimatorYellow.start();
 
+        totalCgpa.setText(String.valueOf(completedCgpa)); // converting double to string.
+        totalCredit.setText(String.valueOf(completedCredit));
+        thisSemesterGpa.setText(String.valueOf(currentGpa));
+
+
         ImageView imageView1 = view.findViewById(R.id.calculateCgpaButtonImageView);
             imageView1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    resultCalculation.calculateResult(completedCgpa,completedCredit,seekBarValue,seekBarValueRetake,perCourseCredit); // for calculating the result
+
                     updateResult();
                 }
             });
@@ -122,9 +137,9 @@ public class ResultCalculationFragment extends Fragment {
 
 
         /////////////// progress bar update /////////////
-        double  progressBarBlueProgress = (80 + temp)* 100 / 148,
-                progressBarGreenProgress = (3.16+ temp*.01) * 100 / 4,
-                progressBarYellowProgress = (3.5+ temp*.01) * 100 / 4; // set this value as credit and cgpa
+        double  progressBarBlueProgress = resultCalculation.totalCredit* 100 / 148,
+                progressBarGreenProgress = resultCalculation.totalCgpa * 100 / 4,
+                progressBarYellowProgress = resultCalculation.currentSemesterResult * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue.setMax(100 * 100);
         progressBarGreen.setMax(100 * 100);
@@ -139,9 +154,9 @@ public class ResultCalculationFragment extends Fragment {
         progressAnimatorGreen.start();
         progressAnimatorYellow.start();
 
-        totalCgpa.setText(String.valueOf(3.16+temp*.01)); // converting double to string.
-        totalCredit.setText(String.valueOf(80 + temp));
-        thisSemesterGpa.setText(String.valueOf(3.5+temp*.01));
+        totalCgpa.setText(String.valueOf(resultCalculation.totalCgpa)); // converting double to string.
+        totalCredit.setText(String.valueOf(resultCalculation.totalCredit));
+        thisSemesterGpa.setText(String.valueOf(resultCalculation.currentSemesterResult));
 
 /////////////// progress bar update end /////////////
     }
@@ -149,9 +164,12 @@ public class ResultCalculationFragment extends Fragment {
     ////////////  get value of seekBar from adapter /////////////
     public void setSeekBarValue(Context context, int position, int value ){
         seekBarValue[position] = value;
-        Log.d("value", "seekBarValue : "+ seekBarValue[position]+ " position : "+ position);
-        temp += seekBarValue[position];
-        Log.d("value", "temp : "+ temp);
+
+//        Log.d("value", "seekBarValue : "+ seekBarValue[position]+ " position : "+ position);
+//         Log.d("value1", "cgpa ...: m..."+ seekBarValue[0]);
+//        Log.d("value1", "cgpa ...: m..."+ seekBarValue[1]);
+//        Log.d("value1", "cgpa ...: m..."+ seekBarValue[2]);
+
 
 
 
@@ -162,7 +180,6 @@ public class ResultCalculationFragment extends Fragment {
     public void setSeekBarValueRetake(Context context, int position, int value ){
         seekBarValueRetake[position] = value;
         Log.d("value", "seekBarValueRetake : "+ seekBarValueRetake[position]);
-        temp -= seekBarValue[position]*3;
 
 
     }

@@ -1,5 +1,7 @@
 package com.arafat6462.aiubstudent;
 
+import android.util.Log;
+
 /**
  * Created by arafat on 10/7/20 at 2:40 PM.
  */
@@ -7,12 +9,15 @@ public class ResultCalculation {
 
     double totalGpaCurrentSemester;
     double totalCreditCurrentSemester ;
+    double backUpCreditForThisSemester ;
+    double backUpGpaForThisSemester;
 
     double currentSemesterResult;
-    double totalCgpa ;
+    double totalCgpa;
     double totalCredit ;
 
-    public void calculateResult(double completedCgpa, int completedCredit, int[] seekBarValue, int[] seekBarValueRetake, int[] perCourseCredit) {
+    public void calculateResult(double completedCgpa, double completedCredit, int[] seekBarValue, int[] seekBarValueRetake, int[] perCourseCredit) {
+
 
 
         double[] gradePoint = new double[seekBarValue.length];
@@ -20,6 +25,11 @@ public class ResultCalculation {
 
           totalGpaCurrentSemester = 0;
           totalCreditCurrentSemester = 0;
+          currentSemesterResult =0;
+          totalCgpa =0;
+          totalCredit =0;
+          backUpCreditForThisSemester = 0;
+          backUpGpaForThisSemester = 0;
 
 
         // initialize all value to -1
@@ -67,7 +77,6 @@ public class ResultCalculation {
 
 
             }
-
         }
 
 
@@ -99,6 +108,10 @@ public class ResultCalculation {
                 totalGpaCurrentSemester += perCourseCredit[i] * gradePoint[i];
                 totalCreditCurrentSemester += perCourseCredit[i];
 
+                backUpCreditForThisSemester += perCourseCredit[i]; // for gpa
+                backUpGpaForThisSemester += perCourseCredit[i] * gradePoint[i]; // for gpa
+
+
             } else {
                 totalGpaCurrentSemester += 0;  // for 'UW' and 'default' cases, credit and gpa will be zero
                 totalCreditCurrentSemester += 0;
@@ -117,34 +130,42 @@ public class ResultCalculation {
                 totalCreditCurrentSemester += 0;
             }
 
-            if (gradePointRetake[i] == 0.00) { // for retake previous f grade
+            if (gradePointRetake[i] == 0.00 && gradePoint[i] != -1) { // for retake previous f grade
 
-                totalGpaCurrentSemester += 0;
+                totalGpaCurrentSemester += 0;                    // result is added previous code
                 totalCreditCurrentSemester -= perCourseCredit[i]; // as retake grade is f, so free the previous credit
             }
 
             if (gradePointRetake[i] == 2.25) { // if retake result is d, then we have to compare the result to find best one.
 
-                if (gradePointRetake[i] <= gradePoint[i]) {
 
-                    totalGpaCurrentSemester += gradePoint[i];
-                } else {
-                    totalGpaCurrentSemester += gradePointRetake[i];
+                if (gradePoint[i] > 0) {
+                    totalGpaCurrentSemester -= gradePointRetake[i] * perCourseCredit[i]; // this result is already added in previous semester when student get d/2.25.
 
                 }
 
-                totalCreditCurrentSemester += 0;
+                if (gradePoint[i] != -1) { // as retake grade is f, so free the previous credit
+
+                    totalCreditCurrentSemester -= perCourseCredit[i];
+                }
             }
         }
 
 
-        /////////////////////
-        currentSemesterResult = totalGpaCurrentSemester / totalCreditCurrentSemester;
-        totalCgpa = completedCgpa + currentSemesterResult;
+        ///////////////////// final result //////////////
+        currentSemesterResult = backUpGpaForThisSemester / backUpCreditForThisSemester;
+        if (backUpCreditForThisSemester == 0.00) {
+            backUpCreditForThisSemester = 0.00;
+        }
+
         totalCredit = completedCredit + totalCreditCurrentSemester;
+        totalCgpa = ((completedCgpa * completedCredit) + totalGpaCurrentSemester) / (completedCredit + totalCreditCurrentSemester);
 
 
 
+        Log.d("value1", "gpa ...: "+ completedCgpa);
+        Log.d("value1", "cgpa : "+ completedCredit);
+        Log.d("value1", "credit : "+ totalCredit);
 
 
     }
@@ -158,7 +179,7 @@ public class ResultCalculation {
         return totalCgpa;
     }
 
-    public double getTotalCredit() {
-        return totalCredit;
+    public int getTotalCredit() {
+        return (int) totalCredit;
     }
 }

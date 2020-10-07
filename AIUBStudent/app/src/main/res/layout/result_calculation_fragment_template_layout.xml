@@ -413,7 +413,7 @@
                 android:layout_height="wrap_content"
                 android:max="9"
                 android:layout_marginBottom="5dp"
-                android:progress="3"
+                android:progress="0"
                 android:splitTrack="false" />
 
 
