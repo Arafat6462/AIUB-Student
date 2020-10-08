@@ -153,21 +153,33 @@ public class ResultCalculation {
 
 
         ///////////////////// final result //////////////
-        currentSemesterResult = backUpGpaForThisSemester / backUpCreditForThisSemester;
+
+
+        // current semester
+        currentSemesterResult = (Math.round(backUpGpaForThisSemester * 100) / 100.0d) / backUpCreditForThisSemester; // use backup gpa and credit bacause for this semester we don't count any previous result
         if (backUpCreditForThisSemester == 0.00) {
-            backUpCreditForThisSemester = 0.00;
+            currentSemesterResult = 0.00;
         }
 
+        // credit
         totalCredit = completedCredit + totalCreditCurrentSemester;
+
+        // cgpa
+        totalGpaCurrentSemester = Math.round(totalGpaCurrentSemester*100)/100.0d;
         totalCgpa = ((completedCgpa * completedCredit) + totalGpaCurrentSemester) / (completedCredit + totalCreditCurrentSemester);
 
 
 
-        Log.d("value1", "gpa ...: "+ completedCgpa);
-        Log.d("value1", "cgpa : "+ completedCredit);
-        Log.d("value1", "credit : "+ totalCredit);
+       // Log.d("value1", "gpa ...: "+ backUpGpaForThisSemester);
+        Log.d("value1", "cgpa : "+ currentSemesterResult);
+        Log.d("value1", "credit : "+ totalCgpa);
 
-
+        // for founding the result after 2 decimal point
+        currentSemesterResult = Math.round(currentSemesterResult*100)/100.0d;
+        totalCgpa = Math.round(totalCgpa*100)/100.0d;
+//
+//        Log.d("value1", "cgpa : "+ currentSemesterResult);
+//        Log.d("value1", "credit : "+ totalCgpa);
     }
 
 
@@ -182,4 +194,5 @@ public class ResultCalculation {
     public int getTotalCredit() {
         return (int) totalCredit;
     }
+
 }

@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -17,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     // create a  stack for storing history of user activity
     BottomNavigationView bottomNavigationView;
     int currentFragmentId;
+    public Activity mainActivity;
+
+
 
 
     @Override
@@ -80,12 +85,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (currentFragmentId == R.id.nav_dashboard) {
-             Login.loginActivity.finish(); // also finish the login activity
-             super.onBackPressed();
-         } else {
+            Login.loginActivity.finish(); // also finish the login activity
+
+            Log.d("value1", "onBackPressed called : true");
+            super.onBackPressed();
+            mainActivity.finish();
+        } else {
             SetNavigationVisibilityAndBackButton(true); // for from result calculation to dashboard show bottom navigation instead of onPause method
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
-            bottomNavigationView.setSelectedItemId(R.id.nav_dashboard);
+            Log.d("value1", "onBackPressed called : ");
+
         }
     }
 

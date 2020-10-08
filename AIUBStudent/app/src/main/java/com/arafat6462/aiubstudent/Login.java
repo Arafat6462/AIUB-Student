@@ -18,7 +18,7 @@ public class Login extends AppCompatActivity {
 
     private  ImageView loginButton;
     private EditText userName,password;
- public static Activity loginActivity;
+    public static Activity loginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

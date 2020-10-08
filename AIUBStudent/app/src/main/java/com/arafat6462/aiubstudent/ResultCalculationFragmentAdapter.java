@@ -77,7 +77,7 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
     //this getItemCount is work for how many copy of template are made.
     @Override
     public int getItemCount() {
-        return images.length;
+        return description.length;
     }
 
 
@@ -116,7 +116,7 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
                 public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                     Log.d("seekbar", "onProgressChanged at : " + getAdapterPosition() + " = " + i);
                     resultCalculationFragment.setSeekBarValue(context, getAdapterPosition(), i);
-                  }
+                   }
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
