@@ -65,13 +65,16 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
+                //  pass id password for parse data
+               // ParseDataFromPortal parseDataFromPortal = new ParseDataFromPortal(id,pass);
+                new ParseDataFromPortal(id,pass).execute();
                 openMainActivity();
             }
         });
     }
 
     // open main activity from login page
-    private void openMainActivity() {
+    public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
      }
