@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -67,14 +68,18 @@ public class Login extends AppCompatActivity {
 
                 //  pass id password for parse data
                // ParseDataFromPortal parseDataFromPortal = new ParseDataFromPortal(id,pass);
-                new ParseDataFromPortal(id,pass).execute();
-                openMainActivity();
+                new ParseDataFromPortal(id,pass,Login.this).execute(); // send activity also for start new activity form data class
+                Log.d("new1","call parse data:");
+
+               // openMainActivity();
             }
         });
     }
 
     // open main activity from login page
     public void openMainActivity() {
+        Log.d("new1","main activity call:");
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
      }

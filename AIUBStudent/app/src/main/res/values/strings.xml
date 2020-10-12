@@ -8,11 +8,8 @@
 
     <!--    for RecyclerView-->
     <string-array name="country_desc">
-        <item>ADVANCE DATABASE MANAGEMENT SYSTEM </item>
-        <item>COMPILER DESIGN</item>
-        <item>ELECTRONIC DEVICES</item>
-        <item>ELECTRONIC DEVICES LAB	</item>
-        <item>ENGINEERING MANAGEMENT	</item>
+         <item>ELECTRONIC DEVICES</item>
+         <item>ENGINEERING MANAGEMENT	</item>
         <item>MATRICES, VECTORS, FOURIER ANALYSIS</item>
      </string-array>
 

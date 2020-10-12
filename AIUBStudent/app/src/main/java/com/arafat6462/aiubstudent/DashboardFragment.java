@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,10 @@ public class DashboardFragment extends Fragment {
     public static final float MAX_CREDIT = 20, MIN_CREDIT = 0, MAX_CGPA = 4, MIN_CGPA = 0;
     public static final int CreditStepMinToMax = 8, CgpaStepMinToMax = 5;
     private RadarChart chart;
-    public TextView textView;
+    public TextView student_current_cgpa , student_current_completed_credit;
+
+    // for data
+    ParseDataFromPortal parseData = new ParseDataFromPortal(null,null,null);
 
     @Nullable
     @Override
@@ -56,7 +60,7 @@ public class DashboardFragment extends Fragment {
         RadarButtonCredit = view.findViewById(R.id.RadarButtonCredit);
 
 /////////////// progress bar /////////////
-        double progressBarBlueProgress = 80 * 100 / 148, progressBarGreenProgress = 3.16 * 100 / 4; // set this value as credit and cgpa
+        double progressBarBlueProgress = parseData.getCompletedCredit() * 100 / 148, progressBarGreenProgress = parseData.getCgpa() * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue = view.findViewById(R.id.progressBarBlue);
         progressBarGreen = view.findViewById(R.id.progressBarGreen);
@@ -69,6 +73,15 @@ public class DashboardFragment extends Fragment {
         progressAnimatorGreen.setDuration(1500);
         progressAnimatorBlue.start();
         progressAnimatorGreen.start();
+
+        student_current_cgpa = view.findViewById(R.id.student_current_cgpa);
+        student_current_completed_credit = view.findViewById(R.id.student_current_completed_credit);
+        // set data form data class
+        Log.d("new3","cgpa :"+ parseData.getCgpa());
+
+        student_current_cgpa.setText(String.valueOf(parseData.getCgpa()));
+        student_current_completed_credit.setText(String.valueOf(parseData.getCompletedCredit()));
+
 /////////////// progress bar end /////////////
 
         // we configure the radar chart

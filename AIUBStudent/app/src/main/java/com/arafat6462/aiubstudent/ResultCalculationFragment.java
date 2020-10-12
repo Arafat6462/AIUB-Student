@@ -35,9 +35,9 @@ public class ResultCalculationFragment extends Fragment {
     ImageView imageView55;
     private TextView thisSemesterGpa, totalCgpa, totalCredit;
     public static TextView calculated_Result_TextView;
-    ////////// temporary ///////////
-    double completedCgpa = 3.19, currentGpa = 0.0, completedCredit = 12;
-    ////////// temporary ///////////
+
+    // for data collect
+    ParseDataFromPortal parseData = new ParseDataFromPortal(null, null, null);
 
 
     // find all image,string and other all elements
@@ -65,7 +65,7 @@ public class ResultCalculationFragment extends Fragment {
 
 
         /////////////// progress bar /////////////
-        double progressBarBlueProgress = completedCredit * 100 / 148, progressBarGreenProgress = completedCgpa * 100 / 4, progressBarYellowProgress = currentGpa * 100 / 4; // set this value as credit and cgpa
+        double progressBarBlueProgress = parseData.getCompletedCredit() * 100 / 148, progressBarGreenProgress = parseData.getCgpa() * 100 / 4, progressBarYellowProgress = 0.0 * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue = view.findViewById(R.id.progressBarBlue);
         progressBarGreen = view.findViewById(R.id.progressBarGreen);
@@ -84,9 +84,9 @@ public class ResultCalculationFragment extends Fragment {
         progressAnimatorGreen.start();
         progressAnimatorYellow.start();
 
-        totalCgpa.setText(String.valueOf(completedCgpa)); // converting double to string.
-        totalCredit.setText(String.valueOf(completedCredit));
-        thisSemesterGpa.setText(String.valueOf(currentGpa));
+        totalCgpa.setText(String.valueOf(parseData.getCgpa())); // converting double to string.
+        totalCredit.setText(String.valueOf(parseData.getCompletedCredit()));
+        thisSemesterGpa.setText(String.valueOf(0.0));
         calculated_Result_TextView.setTextColor(Color.parseColor( "#BCEAC0"));
 
 
@@ -96,8 +96,7 @@ public class ResultCalculationFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                resultCalculation.calculateResult(completedCgpa, completedCredit, seekBarValue, seekBarValueRetake, perCourseCredit); // for calculating the result
-
+                resultCalculation.calculateResult(parseData.getCgpa(), parseData.getCompletedCredit(), seekBarValue, seekBarValueRetake, perCourseCredit); // for calculating the result and update the result
                 updateResult();
             }
         });

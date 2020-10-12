@@ -1,7 +1,11 @@
 package com.arafat6462.aiubstudent;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -17,18 +21,23 @@ import java.util.Map;
  */
 public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
 
-    private String username,password;
-    private String getUserId, getUserName, getCompletedCredit, getcgpa;
+    private  String username,password;
+    private static String userId, userName; // static for access form other activity without changing data
+    private static double cgpa;
+    private static int completedCredit;
+    private Activity activity;
+    private ProgressDialog dialog;
     ArrayList<String> courseNameAll = new ArrayList<String>();
     ArrayList<String> courseCreditAll = new ArrayList<String>();
 
-    ArrayList<String> courseName = new ArrayList<String>();
-    ArrayList<Double> courseCredit = new ArrayList<Double>();
+    static ArrayList<String> courseName = new ArrayList<String>();
+    static ArrayList<Double> courseCredit = new ArrayList<Double>();
 
 
-    public ParseDataFromPortal(String username, String password) {
+    public ParseDataFromPortal(String username, String password, Activity activity) {
         this.username = username;
         this.password = password;
+        this.activity = activity;
     }
 
 
@@ -42,6 +51,7 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
                     .ignoreContentType(true)
                     .execute();
 
+            Log.d("new1","do in background :");
 
             Map<String,String> coky=response.cookies(); // create a season. and  this cookies will keep you login for next page or other task
 
@@ -100,10 +110,10 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
 
             }
 
-             getUserId = courseCreditAll.get(0);
-             getUserName = courseCreditAll.get(1);
-             getCompletedCredit = courseCreditAll.get(2);
-             getcgpa = courseCreditAll.get(4);
+             userId = courseCreditAll.get(0);
+             userName = courseCreditAll.get(1);
+             completedCredit = Integer.parseInt(courseCreditAll.get(2));
+             cgpa = Double.parseDouble(courseCreditAll.get(4));
 
             Log.d("new1","userId :"+ courseCreditAll.get(0));
             Log.d("new1","userName :"+ courseCreditAll.get(1));
@@ -123,4 +133,67 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
 
         return null;
     }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        dialog=new ProgressDialog(activity);
+        dialog.setTitle("Login");
+        dialog.setMessage("please wait. loading...");
+        dialog.show();
+
+    }
+
+    @Override
+    protected void onCancelled(Void aVoid) {
+        super.onCancelled(aVoid);
+        Toast toast = Toast.makeText(activity, "canced", Toast.LENGTH_LONG);
+        toast.show();
+        // if login failed, then go to login page again
+        Intent intent = new Intent(activity, Login.class);
+        activity.startActivity(intent);
+    }
+
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        dialog.dismiss();
+        // textView.setText(str);
+        // textView.setText(str);
+
+        // start main activity form here instead of login class.
+        Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
+    }
+
+
+    ////////////////// getter ////////////////
+
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public double getCgpa() {
+        return cgpa;
+    }
+
+    public int getCompletedCredit() {
+        return completedCredit;
+    }
+
+    public ArrayList<String> getCourseName() {
+        return courseName;
+    }
+
+    public ArrayList<Double> getCourseCredit() {
+        return courseCredit;
+    }
+
+
 }
