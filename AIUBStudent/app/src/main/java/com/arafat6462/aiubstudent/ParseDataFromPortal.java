@@ -32,6 +32,8 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
 
     static ArrayList<String> courseName = new ArrayList<String>();
     static ArrayList<Double> courseCredit = new ArrayList<Double>();
+    static ArrayList<Double> perSemesterResult = new ArrayList<Double>();
+    static ArrayList<Double> perSemesterCredit = new ArrayList<Double>();
 
 
     public ParseDataFromPortal(String username, String password, Activity activity) {
@@ -72,27 +74,42 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
                     courseNameAll.add(row.select("td:nth-of-type(2)").text());
                     courseCreditAll.add(row.select("td:nth-of-type(3)").text());
                 }
-                else {
-                      String perSemesterGpa = row.select("td:nth-of-type(2)").text();
 
-                }
+                // CHECK if the text is double, if true then set  credit and result
+                try {
+                    Double result = Double.parseDouble(row.select("td:nth-of-type(4)").text());
+                    perSemesterResult.add(result);
+                    perSemesterCredit.add(Double.parseDouble(row.select("td:nth-of-type(3)").text()));
+
+                } catch (NumberFormatException e) {
+                 }
+
 
             }
 
-            ////////////// print course name ///////////////
+//            ///////////////////// check //////////////////
+//            Log.d("new4","perSemesterCredit :"+ perSemesterCredit.size());
+//            Log.d("new4","perSemesterResult :"+ perSemesterResult.size());
+//            for (int i=0; i<perSemesterCredit.size(); i++){
+//
+//                Log.d("new4","perSemesterCredit "+i+" :" +perSemesterCredit.get(i));
+//                Log.d("new4","perSemesterResult "+i+" :"+ perSemesterResult.get(i));
+//
+//            }
+//            ///////////////////// check //////////////////
+
+            ////////////// set course name & credit and sort right way ///////////////
             for (int i = courseNameAll.size()-1; i>=0; i--){
                 if(courseNameAll.get(i).length() ==0 ){  // empty box will break the loop in html
                     break;
                 }
                 else {
-
-                    courseName.add(courseNameAll.get(i));
-
                     String temp =  courseCreditAll.get(i);
                     String temp1 = temp.replace(")","");
                     String temp2 = temp1.replace("(","");
 
                     courseCredit.add(Double.parseDouble(temp2));
+                    courseName.add(courseNameAll.get(i));
 
 //                    Log.d("new1","course name :"+ courseNameAll.get(i));
 //                    Log.d("new1","course credit :"+ courseCreditAll.get(i));
@@ -195,5 +212,11 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
         return courseCredit;
     }
 
+    public static ArrayList<Double> getPerSemesterResult() {
+        return perSemesterResult;
+    }
 
+    public static ArrayList<Double> getPerSemesterCredit() {
+        return perSemesterCredit;
+    }
 }

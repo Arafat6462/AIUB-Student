@@ -78,7 +78,6 @@ public class DashboardFragment extends Fragment {
         student_current_completed_credit = view.findViewById(R.id.student_current_completed_credit);
         // set data form data class
         Log.d("new3","cgpa 1:"+ parseData.getCgpa());
-
         student_current_cgpa.setText(String.valueOf(parseData.getCgpa()));
         student_current_completed_credit.setText(String.valueOf(parseData.getCompletedCredit()));
 
@@ -169,6 +168,14 @@ public class DashboardFragment extends Fragment {
         ArrayList<RadarEntry> AllSemesterCGPA = new ArrayList<>();
         ArrayList<RadarEntry> AllSemesterCREDIT = new ArrayList<>();
 
+        // set all credit and cgpa to radat list and convert double to float for radar list. to call static value, don't need to make object.
+        for (int i = 0; i< ParseDataFromPortal.getPerSemesterCredit().size(); i++){
+
+            AllSemesterCGPA.add(new RadarEntry(ParseDataFromPortal.getPerSemesterResult().get(i).floatValue()));
+            AllSemesterCREDIT.add(new RadarEntry(ParseDataFromPortal.getPerSemesterCredit().get(i).floatValue()));
+
+        }
+
         // we generate random values for the qualities of employees measured between 1 and 2.
 //        for (int i=0; i<NB_QUALITIES; i++){
 //
@@ -179,19 +186,24 @@ public class DashboardFragment extends Fragment {
 //            employee2.add(new RadarEntry(val2));
 //        }
 
+
+
         //added later instead of above for loop random generator
-        AllSemesterCGPA.add(new RadarEntry(3.01f));
-        AllSemesterCGPA.add(new RadarEntry(3.2f));
-        AllSemesterCGPA.add(new RadarEntry(2.5f));
-        AllSemesterCGPA.add(new RadarEntry(3.81f));
-        AllSemesterCGPA.add(new RadarEntry(3.41f));
 
-
-        AllSemesterCREDIT.add(new RadarEntry(13));
-        AllSemesterCREDIT.add(new RadarEntry(14));
-        AllSemesterCREDIT.add(new RadarEntry(12));
-        AllSemesterCREDIT.add(new RadarEntry(15));
-        AllSemesterCREDIT.add(new RadarEntry(16));
+//        ////// hard coded data /////////
+//        AllSemesterCGPA.add(new RadarEntry(3.01f));
+//        AllSemesterCGPA.add(new RadarEntry(3.2f));
+//        AllSemesterCGPA.add(new RadarEntry(2.5f));
+//        AllSemesterCGPA.add(new RadarEntry(3.81f));
+//        AllSemesterCGPA.add(new RadarEntry(3.41f));
+//
+//
+//        AllSemesterCREDIT.add(new RadarEntry(13));
+//        AllSemesterCREDIT.add(new RadarEntry(14));
+//        AllSemesterCREDIT.add(new RadarEntry(12));
+//        AllSemesterCREDIT.add(new RadarEntry(15));
+//        AllSemesterCREDIT.add(new RadarEntry(16));
+//        ////// hard coded data /////////
 
 
         // we create two radar data sets objects with these data
