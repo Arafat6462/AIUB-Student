@@ -77,7 +77,7 @@ public class DashboardFragment extends Fragment {
         student_current_cgpa = view.findViewById(R.id.student_current_cgpa);
         student_current_completed_credit = view.findViewById(R.id.student_current_completed_credit);
         // set data form data class
-        Log.d("new3","cgpa :"+ parseData.getCgpa());
+        Log.d("new3","cgpa 1:"+ parseData.getCgpa());
 
         student_current_cgpa.setText(String.valueOf(parseData.getCgpa()));
         student_current_completed_credit.setText(String.valueOf(parseData.getCompletedCredit()));

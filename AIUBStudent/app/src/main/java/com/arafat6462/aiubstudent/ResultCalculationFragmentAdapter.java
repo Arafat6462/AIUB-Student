@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 /**
  * Created by arafat on 9/29/20 at 12:29 PM.
  */
@@ -21,18 +23,15 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
 
     // for receive date from fragment layout class
     Context context;
-    String[] title, description;
-    int[] images;
-    ResultCalculationFragment resultCalculationFragment = new ResultCalculationFragment();
+     static ArrayList<String> description = new ArrayList<String>();
+     ResultCalculationFragment resultCalculationFragment = new ResultCalculationFragment();
 
 
     // for receive date from fragment layout class
-    public ResultCalculationFragmentAdapter(Context context, String[] title, String[] description, int[] images) {
+    public ResultCalculationFragmentAdapter(Context context, ArrayList<String> description) {
         this.context = context;
-        this.title = title;
         this.description = description;
-        this.images = images;
-    }
+     }
 
 
 
@@ -65,7 +64,7 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
 
 //        holder.titleTextView.setText(title[position]);
         //   holder.descriptionTextView.setText(String.valueOf(position)); // find the position and set the recycler view layout height according to position
-        holder.descriptionTextView.setText(description[position]);
+        holder.descriptionTextView.setText(description.get(position));
 //        holder.logoImageView.setImageResource(images[position]);
     }
 
@@ -77,7 +76,7 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
     //this getItemCount is work for how many copy of template are made.
     @Override
     public int getItemCount() {
-        return description.length;
+        return description.size();
     }
 
 

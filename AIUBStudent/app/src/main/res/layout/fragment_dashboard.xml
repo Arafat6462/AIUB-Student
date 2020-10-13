@@ -166,7 +166,7 @@
                             android:id="@+id/student_current_cgpa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="3.16"
+                            tools:text="3.16"
                             android:textColor="@color/black"
                             android:textSize="24sp"
                             android:textStyle="bold" />
@@ -222,7 +222,7 @@
                             android:id="@+id/student_current_completed_credit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
+                            tools:text="80"
                             android:textColor="@color/black"
                             android:textSize="24sp"
                             android:textStyle="bold" />

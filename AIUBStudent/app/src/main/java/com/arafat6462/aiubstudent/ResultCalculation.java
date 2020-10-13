@@ -2,6 +2,8 @@ package com.arafat6462.aiubstudent;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by arafat on 10/7/20 at 2:40 PM.
  */
@@ -16,7 +18,7 @@ public class ResultCalculation {
     double totalCgpa;
     double totalCredit ;
 
-    public void calculateResult(double completedCgpa, double completedCredit, int[] seekBarValue, int[] seekBarValueRetake, int[] perCourseCredit) {
+    public void calculateResult(double completedCgpa, double completedCredit, int[] seekBarValue, int[] seekBarValueRetake, ArrayList<Double> perCourseCredit) {
 
 
 
@@ -105,11 +107,11 @@ public class ResultCalculation {
 
             if (gradePoint[i] != -1) {   // except UW all result are copulative
 
-                totalGpaCurrentSemester += perCourseCredit[i] * gradePoint[i];
-                totalCreditCurrentSemester += perCourseCredit[i];
+                totalGpaCurrentSemester += perCourseCredit.get(i) * gradePoint[i];
+                totalCreditCurrentSemester += perCourseCredit.get(i);
 
-                backUpCreditForThisSemester += perCourseCredit[i]; // for gpa
-                backUpGpaForThisSemester += perCourseCredit[i] * gradePoint[i]; // for gpa
+                backUpCreditForThisSemester += perCourseCredit.get(i); // for gpa
+                backUpGpaForThisSemester += perCourseCredit.get(i) * gradePoint[i]; // for gpa
 
 
             } else {
@@ -133,20 +135,20 @@ public class ResultCalculation {
             if (gradePointRetake[i] == 0.00 && gradePoint[i] != -1) { // for retake previous f grade
 
                 totalGpaCurrentSemester += 0;                    // result is added previous code
-                totalCreditCurrentSemester -= perCourseCredit[i]; // as retake grade is f, so free the previous credit
+                totalCreditCurrentSemester -= perCourseCredit.get(i); // as retake grade is f, so free the previous credit
             }
 
             if (gradePointRetake[i] == 2.25) { // if retake result is d, then we have to compare the result to find best one.
 
 
                 if (gradePoint[i] > 0) {
-                    totalGpaCurrentSemester -= gradePointRetake[i] * perCourseCredit[i]; // this result is already added in previous semester when student get d/2.25.
+                    totalGpaCurrentSemester -= gradePointRetake[i] * perCourseCredit.get(i); // this result is already added in previous semester when student get d/2.25.
 
                 }
 
                 if (gradePoint[i] != -1) { // as retake grade is f, so free the previous credit
 
-                    totalCreditCurrentSemester -= perCourseCredit[i];
+                    totalCreditCurrentSemester -= perCourseCredit.get(i);
                 }
             }
         }

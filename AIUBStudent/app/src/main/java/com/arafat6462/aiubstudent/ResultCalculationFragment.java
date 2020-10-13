@@ -6,8 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -18,45 +17,75 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 public class ResultCalculationFragment extends Fragment {
 
     // for progressBar
     private ProgressBar progressBarBlue, progressBarGreen, progressBarYellow;
     ObjectAnimator progressAnimatorBlue, progressAnimatorGreen, progressAnimatorYellow;
-
-    ResultCalculation resultCalculation = new ResultCalculation();
-
     RecyclerView recyclerView;
-    ResultCalculationFragmentAdapter resultCalculationFragmentAdapter;
-    static int[] seekBarValue = new int[6];
-    static int[] seekBarValueRetake = new int[6];
-    static int[] perCourseCredit = {1, 3, 3, 3, 3, 1};
     ImageView imageView55;
     private TextView thisSemesterGpa, totalCgpa, totalCredit;
     public static TextView calculated_Result_TextView;
 
+
+    static int[] seekBarValue;
+    static int[] seekBarValueRetake;
+    static ArrayList<Double> perCourseCredit = new ArrayList<Double>();
+    static ArrayList<String> description = new ArrayList<String>();
+
+
     // for data collect
     ParseDataFromPortal parseData = new ParseDataFromPortal(null, null, null);
+    ResultCalculation resultCalculation = new ResultCalculation();
+    ResultCalculationFragmentAdapter resultCalculationFragmentAdapter;
 
 
-    // find all image,string and other all elements
-    int[] images = {R.drawable.green_progressbar_indicator_dot, R.drawable.login_page_image_submit, R.drawable.blue_progressbar_indicator_dot,
-            R.drawable.green_progressbar_indicator_dot, R.drawable.login_page_image_submit, R.drawable.blue_progressbar_indicator_dot};
-    String[] title, description;
+
+
+
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_result_calculation, container, false);
+        View view = inflater.inflate(R.layout.fragment_result_calculation, container, false);        // Inflate the layout for this fragment
+
 
         calculated_Result_TextView = view.findViewById(R.id.calculated_Result_TextView);
+
+        //////// add data /////////////
+        perCourseCredit = parseData.getCourseCredit();
+        description = parseData.getCourseName();
+        seekBarValue = new int[parseData.getCourseName().size()];
+        seekBarValueRetake = new int[parseData.getCourseName().size()];
+        //////// add data /////////////
+
         ////////////// set all as 0 at initial /////////////////
         for (int i = 0; i < seekBarValue.length; i++) {
             seekBarValue[i] = 0;
             seekBarValueRetake[i] = 0;
         }
         ////////////// set all as 0 at initial /////////////////
+
+
+        // ------------------- log -----------------------------
+        Log.d("new3","credit 1:"+  perCourseCredit.get(0));
+        Log.d("new3","credit 2:"+  perCourseCredit.get(1));
+        Log.d("new3","credit 3:"+  perCourseCredit.get(2));
+        Log.d("new3","credit 4:"+  perCourseCredit.get(3));
+
+        Log.d("new3","COURSE 1:"+ parseData.getCourseName().get(0));
+        Log.d("new3","COURSE 2:"+ parseData.getCourseName().get(1));
+        Log.d("new3","COURSE 3:"+ parseData.getCourseName().get(2));
+        Log.d("new3","COURSE 4:"+ parseData.getCourseName().get(3));
+        // ------------------- log -----------------------------
+
 
 
         thisSemesterGpa = view.findViewById(R.id.student_this_semester_cgpa);
@@ -106,11 +135,10 @@ public class ResultCalculationFragment extends Fragment {
 
         ///////////
         recyclerView = view.findViewById(R.id.ResultCalculationRecyclerView);
-        title = getResources().getStringArray(R.array.country_Name); // added all country name in title array
-        description = getResources().getStringArray(R.array.country_desc);
+        // description = getResources().getStringArray(R.array.country_desc);
 
         // send data to adapter class by default constructor
-        resultCalculationFragmentAdapter = new ResultCalculationFragmentAdapter(this.getActivity(), title, description, images);
+        resultCalculationFragmentAdapter = new ResultCalculationFragmentAdapter(this.getActivity(), description);
         //set adapter
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setAdapter(resultCalculationFragmentAdapter);
