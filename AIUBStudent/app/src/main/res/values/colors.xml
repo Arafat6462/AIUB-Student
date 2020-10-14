@@ -13,6 +13,10 @@
     <color name="customButtonBackgroundBlue">#D4EBEF</color>
     <color name="customButtonBorderLightGray">#993EA6D5</color>
 
+    <color name="success">#4BB543</color>
+    <color name="warining">#FFCC88</color>
+    <color name="error">#CC0000</color>
+
     <style name="circularProgressBarBlue">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/circular_progress_bar_blue</item>

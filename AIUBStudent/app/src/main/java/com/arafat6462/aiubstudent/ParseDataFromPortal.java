@@ -1,6 +1,7 @@
 package com.arafat6462.aiubstudent;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -26,7 +27,7 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
     private static double cgpa;
     private static int completedCredit;
     private Activity activity;
-    private ProgressDialog dialog;
+    private AlertDialog dialog;
     ArrayList<String> courseNameAll = new ArrayList<String>();
     ArrayList<String> courseCreditAll = new ArrayList<String>();
 
