@@ -1,14 +1,19 @@
 package com.arafat6462.aiubstudent;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -85,11 +90,42 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (currentFragmentId == R.id.nav_dashboard) {
-            Login.loginActivity.finish(); // also finish the login activity
 
-            Log.d("value1", "onBackPressed called : true");
-            super.onBackPressed();
-            mainActivity.finish();
+            //............... alert dialog ......................
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogTheme);
+            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.exit_dialog, (ConstraintLayout) findViewById(R.id.layout_dialog));
+            builder.setView(view); // set the view
+            final AlertDialog alertDialog = builder.create();
+
+            // if press yes
+            view.findViewById(R.id.button_yes).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Login.loginActivity.finish(); // also finish the login activity
+                  //  Log.d("value1", "onBackPressed called : true");
+                    mainActivity.finish();
+                 }
+            });
+
+            // if press yes
+            view.findViewById(R.id.button_no).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    alertDialog.dismiss();
+                }
+            });
+
+
+            if (alertDialog.getWindow() != null){
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            }
+            alertDialog.show();
+
+            //............... alert dialog ......................
+
+
         } else {
             SetNavigationVisibilityAndBackButton(true); // for from result calculation to dashboard show bottom navigation instead of onPause method
             Log.d("value1", "onBackPressed called : ");
