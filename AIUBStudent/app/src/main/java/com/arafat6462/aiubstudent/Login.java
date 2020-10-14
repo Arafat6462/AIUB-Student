@@ -52,12 +52,12 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String id = userName.getText().toString().trim();
+                String id = userName.getText().toString().trim();  // trim remove white space
                 String pass = password.getText().toString().trim();
 
                 // checking the blank id & password
-                if (TextUtils.isEmpty(id)){
-                    userName.setError("User ID Required");
+                if (id.length() != 10 || id.charAt(2) != '-' || id.charAt(8) != '-'){
+                    userName.setError("Valid User ID Required");
                     return;
                 }
 

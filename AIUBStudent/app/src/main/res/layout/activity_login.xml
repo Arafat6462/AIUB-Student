@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
+    android:background="@color/loginPageBackground"
     android:orientation="vertical"
-    android:background="@color/loginPageBackground">
+    android:rotation="0"
+    android:rotationX="0"
+    android:rotationY="-0"
+    tools:context=".Login">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -33,6 +36,7 @@
         android:id="@+id/login_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:rotationX="0"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
@@ -42,42 +46,62 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:gravity="center_horizontal"
+        android:layout_marginEnd="50dp"
+
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-        <EditText
-            android:id="@+id/user_name"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/id_password_background"
-            android:drawableLeft="@drawable/login_username_icon"
-            android:ems="10"
-            android:gravity="center_horizontal"
+
+            android:layout_gravity="center"
             android:hint="User-ID"
-            android:inputType="phone"
+            android:textColorHint="@color/black">
 
-            android:padding="8dp"
-            android:textColorHint="@color/white" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        <EditText
-            android:id="@+id/password"
+                android:drawableStart="@drawable/login_username_icon"
+                android:ems="12"
+                android:inputType="phone"
+                android:padding="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tt"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/id_password_background"
-            android:ems="10"
-            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
             android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textColorHint="@color/white"
-            android:drawableLeft="@drawable/login_password_icon"/>
+            android:textColorHint="@color/black"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/login_password_icon"
+                android:ems="12"
+
+
+                android:inputType="textPassword"
+                android:padding="0dp"
+
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
     </LinearLayout>
