@@ -6,7 +6,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -27,7 +31,9 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
     private static double cgpa;
     private static int completedCredit;
     private Activity activity;
-    private AlertDialog dialog;
+    /////   alert dialog ................
+    androidx.appcompat.app.AlertDialog alertDialog;
+    /////   alert dialog ................
     ArrayList<String> courseNameAll = new ArrayList<String>();
     ArrayList<String> courseCreditAll = new ArrayList<String>();
 
@@ -155,17 +161,20 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog=new ProgressDialog(activity);
-        dialog.setTitle("Login");
-        dialog.setMessage("please wait. loading...");
-        dialog.show();
+
+        // loading animation
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(activity, R.style.NoInternetTheme);
+        View view = LayoutInflater.from(activity).inflate(R.layout.loading, (ConstraintLayout) activity.findViewById(R.id.layout_loading));
+        builder.setView(view); // set the view
+        alertDialog = builder.create();
+        alertDialog.show();
 
     }
 
     @Override
     protected void onCancelled(Void aVoid) {
         super.onCancelled(aVoid);
-        Toast toast = Toast.makeText(activity, "canced", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(activity, "cancel", Toast.LENGTH_LONG);
         toast.show();
         // if login failed, then go to login page again
         Intent intent = new Intent(activity, Login.class);
@@ -176,13 +185,12 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        dialog.dismiss();
-        // textView.setText(str);
-        // textView.setText(str);
 
         // start main activity form here instead of login class.
         Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);
+
+        alertDialog.dismiss();
     }
 
 

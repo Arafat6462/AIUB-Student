@@ -1,18 +1,25 @@
 package com.arafat6462.aiubstudent;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
@@ -52,35 +59,111 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String id = userName.getText().toString().trim();  // trim remove white space
-                String pass = password.getText().toString().trim();
 
-                // checking the blank id & password
-                if (id.length() != 10 || id.charAt(2) != '-' || id.charAt(8) != '-'){
-                    userName.setError("Valid User ID Required");
-                    return;
+                    String id = userName.getText().toString().trim();  // trim remove white space
+                    String pass = password.getText().toString().trim();
+
+                    // checking the blank id & password
+                    if (id.length() != 10 || id.charAt(2) != '-' || id.charAt(8) != '-') {
+                        userName.setError("Valid User ID Required");
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(pass)) {
+                        password.setError("Password Required");
+                        return;
+                    }
+
+
+
+                // checking internet connection
+                if (!isConnected(getApplicationContext())) {
+                    //  Log.d("new5", "is connecded false ");
+                    showCustomDialog();
+                } else {
+
+               // checking internet connection
+
+
+                    //  pass id password for parse data
+                    // ParseDataFromPortal parseDataFromPortal = new ParseDataFromPortal(id,pass);
+                    // Log.d("new1", "call parse data:");
+                    // openMainActivity();
+
+                    new ParseDataFromPortal(id, pass, Login.this).execute(); // send activity also for start new activity form data class
                 }
-
-                if (TextUtils.isEmpty(pass)){
-                    password.setError("Password Required");
-                    return;
-                }
-
-                //  pass id password for parse data
-               // ParseDataFromPortal parseDataFromPortal = new ParseDataFromPortal(id,pass);
-                new ParseDataFromPortal(id,pass,Login.this).execute(); // send activity also for start new activity form data class
-                Log.d("new1","call parse data:");
-
-               // openMainActivity();
             }
         });
     }
 
-    // open main activity from login page
-    public void openMainActivity() {
-        Log.d("new1","main activity call:");
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-     }
+    ///////.......... internet connection .............///////////
+    private boolean isConnected(Context context) {
+
+        // Log.d("new5", "is connecded   ");
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        return isConnected;
+
+    }
+    ///////.......... internet connection .............///////////
+
+
+    private void showCustomDialog() {
+
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(Login.this, R.style.NoInternetTheme);
+        View view = LayoutInflater.from(Login.this).inflate(R.layout.network_error, (ConstraintLayout) findViewById(R.id.layout_network_error));
+        builder.setView(view); // set the view
+        final androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        //////............................ go to network setting .................////////////
+
+        view.findViewById(R.id.connect_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+             }
+        });
+        //////............................ option check .................////////////
+
+
+//        AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+//        builder.setMessage("please connect to the internet").setCancelable(false).setPositiveButton("connect", new DialogInterface.OnClickListener() {
+//
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+//            }
+//        })
+//                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                //startActivity(new Intent(getApplicationContext(),Login.class));
+//                finish();
+//            }
+//        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+    // open main activity from login page
+//    public void openMainActivity() {
+//        Log.d("new1","main activity call:");
+//
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+//     }
 }
