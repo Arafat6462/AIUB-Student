@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,7 +43,7 @@ public class DashboardFragment extends Fragment {
     public static final float MAX_CREDIT = 20, MIN_CREDIT = 0, MAX_CGPA = 4, MIN_CGPA = 0;
     public static final int CreditStepMinToMax = 8, CgpaStepMinToMax = 5;
     private RadarChart chart;
-    public TextView student_current_cgpa , student_current_completed_credit;
+    public TextView student_current_cgpa , student_current_completed_credit,totalCredit;
 
     // for data
     ParseDataFromPortal parseData = new ParseDataFromPortal(null,null,null);
@@ -60,7 +59,7 @@ public class DashboardFragment extends Fragment {
         RadarButtonCredit = view.findViewById(R.id.RadarButtonCredit);
 
 /////////////// progress bar /////////////
-        double progressBarBlueProgress = parseData.getCompletedCredit() * 100 / 148, progressBarGreenProgress = parseData.getCgpa() * 100 / 4; // set this value as credit and cgpa
+        double progressBarBlueProgress = ParseDataFromPortal.getCompletedCredit() * 100 / ParseDataFromPortal.getTotalCredit(), progressBarGreenProgress = parseData.getCgpa() * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue = view.findViewById(R.id.progressBarBlue);
         progressBarGreen = view.findViewById(R.id.progressBarGreen);
@@ -76,10 +75,12 @@ public class DashboardFragment extends Fragment {
 
         student_current_cgpa = view.findViewById(R.id.student_current_cgpa);
         student_current_completed_credit = view.findViewById(R.id.student_current_completed_credit);
+        totalCredit = view.findViewById(R.id.total_completed_credit);
         // set data form data class
         Log.d("new3","cgpa 1:"+ parseData.getCgpa());
         student_current_cgpa.setText(String.valueOf(parseData.getCgpa()));
         student_current_completed_credit.setText(String.valueOf(parseData.getCompletedCredit()));
+        totalCredit.setText("/"+ParseDataFromPortal.getTotalCredit());
 
 /////////////// progress bar end /////////////
 

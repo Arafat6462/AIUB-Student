@@ -21,21 +21,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by arafat on 10/11/20 at 3:09 PM.
  */
 public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
 
-    private  String username,password;
+    private  String username,password,department;
     private static String userId, userName; // static for access form other activity without changing data
     private static double cgpa;
-    private static int completedCredit;
+    private static int completedCredit,totalCredit;
     private Activity activity;
     /////   alert dialog ................
     androidx.appcompat.app.AlertDialog alertDialog;
     /////   alert dialog ................
     ArrayList<String> courseNameAll = new ArrayList<String>();
     ArrayList<String> courseCreditAll = new ArrayList<String>();
+    ArrayList<String> findingDepartment = new ArrayList<String>();
 
     static ArrayList<String> courseName = new ArrayList<String>();
     static ArrayList<Double> courseCredit = new ArrayList<Double>();
@@ -60,24 +63,19 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
                     .ignoreContentType(true)
                     .execute();
 
-            Log.d("new1","do in background :");
+           // Log.d("new1","do in background :");
 
             Map<String,String> coky=response.cookies(); // create a season. and  this cookies will keep you login for next page or other task
 
             Document document=Jsoup.connect("https://portal.aiub.edu/Student/GradeReport/BySemester").cookies(coky).get();
 
-
-
-
             //////////// for //////////////
-
-
-            for (Element row : document.select("table.table.table-bordered.table-compressed tr")){ // tr for only tale row will select
+            for (Element row : document.select("table.table.table-bordered.table-compressed tr")) { // tr for only tale row will select
 
 //                    if (row.select("td:nth-of-type(2)").text().equals("")){
 //                        continue;
 //                    }
-                if (row.select("td:nth-of-type(2)").text().length() !=4  &&  row.select("td:nth-of-type(2)").text().length() !=5){
+                if (row.select("td:nth-of-type(2)").text().length() != 4 && row.select("td:nth-of-type(2)").text().length() != 5) {
                     courseNameAll.add(row.select("td:nth-of-type(2)").text());
                     courseCreditAll.add(row.select("td:nth-of-type(3)").text());
                 }
@@ -89,10 +87,57 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
                     perSemesterCredit.add(Double.parseDouble(row.select("td:nth-of-type(3)").text()));
 
                 } catch (NumberFormatException e) {
-                 }
+                }
 
 
             }
+
+            /// finding department and set total credit/////////////////
+            Document document1=Jsoup.connect("https://portal.aiub.edu/Student/Home/Profile").cookies(coky).get();
+            for (Element row : document1.select("table tr")) {
+
+                findingDepartment.add(row.select("td:nth-of-type(2)").text());
+
+            }
+            department = findingDepartment.get(3);
+
+
+            switch (department) {
+                case "Bachelor of Science in Computer Science & Engineering":
+                    totalCredit = 148;
+                    break;
+                case "Bachelor of Science in Computer Science and Software Engineering":
+                    totalCredit = 142;
+                    break;
+                case "Bachelor of Science in Software Engineering":
+                case "Bachelor of Science in Computer Science":
+                    totalCredit = 130;
+                    break;
+                case "Bachelor of Science in Computer Information System":
+                    totalCredit = 129;
+                    break;
+                case "B.SC. IN ELECTRICAL AND ELECTRONIC ENGINEERING":
+                    totalCredit = 145;
+                    break;
+                case "B.SC. IN COMPUTER ENGINEERING ":
+                    totalCredit = 140;
+                    break;
+                case "Department of Architecture":
+                    totalCredit = 175;
+                    break;
+                case "BACHELOR OF BUSINESS ADMINISTRATION":
+                    totalCredit = 126;
+                    break;
+                default:
+                    totalCredit = 150;
+                    break;
+            }
+            Log.d("department", "department name is : "+ totalCredit);
+
+            /// finding department and set total credit/////////////////
+
+
+
 
 //            ///////////////////// check //////////////////
 //            Log.d("new4","perSemesterCredit :"+ perSemesterCredit.size());
@@ -209,7 +254,7 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
         return cgpa;
     }
 
-    public int getCompletedCredit() {
+    public static int getCompletedCredit() {
         return completedCredit;
     }
 
@@ -227,5 +272,9 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
 
     public static ArrayList<Double> getPerSemesterCredit() {
         return perSemesterCredit;
+    }
+
+    public static int getTotalCredit() {
+        return totalCredit;
     }
 }

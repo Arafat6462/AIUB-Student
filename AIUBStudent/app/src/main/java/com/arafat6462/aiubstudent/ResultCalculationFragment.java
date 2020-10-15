@@ -18,7 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class ResultCalculationFragment extends Fragment {
@@ -28,7 +27,7 @@ public class ResultCalculationFragment extends Fragment {
     ObjectAnimator progressAnimatorBlue, progressAnimatorGreen, progressAnimatorYellow;
     RecyclerView recyclerView;
     ImageView imageView55;
-    private TextView thisSemesterGpa, totalCgpa, totalCredit;
+    private TextView thisSemesterGpa, totalCgpa, totalCompletedCredit,totalCredit;
     public static TextView calculated_Result_TextView;
 
 
@@ -90,6 +89,7 @@ public class ResultCalculationFragment extends Fragment {
 
         thisSemesterGpa = view.findViewById(R.id.student_this_semester_cgpa);
         totalCgpa = view.findViewById(R.id.student_current_cgpa);
+        totalCompletedCredit = view.findViewById(R.id.total_completed_credit);
         totalCredit = view.findViewById(R.id.total_credit);
 
 
@@ -114,8 +114,9 @@ public class ResultCalculationFragment extends Fragment {
         progressAnimatorYellow.start();
 
         totalCgpa.setText(String.valueOf(parseData.getCgpa())); // converting double to string.
-        totalCredit.setText(String.valueOf(parseData.getCompletedCredit()));
+        totalCompletedCredit.setText(String.valueOf(parseData.getCompletedCredit()));
         thisSemesterGpa.setText(String.valueOf(0.0));
+        totalCredit.setText("/"+ParseDataFromPortal.getTotalCredit());
         calculated_Result_TextView.setTextColor(Color.parseColor( "#BCEAC0"));
 
 
@@ -186,7 +187,7 @@ public class ResultCalculationFragment extends Fragment {
         progressAnimatorYellow.start();
 
         totalCgpa.setText(String.valueOf(resultCalculation.totalCgpa)); // converting double to string.
-        totalCredit.setText(String.valueOf(resultCalculation.totalCredit));
+        totalCompletedCredit.setText(String.valueOf(resultCalculation.totalCredit));
         thisSemesterGpa.setText(String.valueOf(resultCalculation.currentSemesterResult));
         calculated_Result_TextView.setTextColor(Color.parseColor( "#BCEAC0"));
 

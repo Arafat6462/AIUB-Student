@@ -302,7 +302,7 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                android:id="@+id/total_credit"
+                                android:id="@+id/total_completed_credit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 tools:text="0"
@@ -312,7 +312,7 @@
                                 android:maxLength="4"/>
 
                             <TextView
-                                android:id="@+id/textView3"
+                                android:id="@+id/total_credit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="/148" />
