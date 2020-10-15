@@ -330,26 +330,27 @@
                             app:layout_constraintTop_toBottomOf="@+id/linearLayout31" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="1000dp"
-                android:id="@+id/ResultCalculationRecyclerView"
-                android:nestedScrollingEnabled="false"
 
-                android:layout_marginTop="30dp"
-                 >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ResultCalculationRecyclerView"
+                            android:nestedScrollingEnabled="false"
+                            android:layout_marginTop="30dp"
+                             >
+                         </androidx.recyclerview.widget.RecyclerView>
+                </RelativeLayout>
 
-            </androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
         </ScrollView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
