@@ -16,7 +16,7 @@ public class ResultCalculation {
 
     double currentSemesterResult;
     double totalCgpa;
-    double totalCredit ;
+    int totalCreditCompleted;
 
     public void calculateResult(double completedCgpa, double completedCredit, int[] seekBarValue, int[] seekBarValueRetake, ArrayList<Double> perCourseCredit) {
 
@@ -29,7 +29,7 @@ public class ResultCalculation {
           totalCreditCurrentSemester = 0;
           currentSemesterResult =0;
           totalCgpa =0;
-          totalCredit =0;
+          totalCreditCompleted =0;
           backUpCreditForThisSemester = 0;
           backUpGpaForThisSemester = 0;
 
@@ -164,7 +164,7 @@ public class ResultCalculation {
         }
 
         // credit
-        totalCredit = completedCredit + totalCreditCurrentSemester;
+        totalCreditCompleted = (int) (completedCredit + totalCreditCurrentSemester);
 
         // cgpa
         totalGpaCurrentSemester = Math.round(totalGpaCurrentSemester*100)/100.0d;
@@ -193,8 +193,8 @@ public class ResultCalculation {
         return totalCgpa;
     }
 
-    public int getTotalCredit() {
-        return (int) totalCredit;
+    public int getTotalCreditCompleted() {
+        return totalCreditCompleted;
     }
 
 }

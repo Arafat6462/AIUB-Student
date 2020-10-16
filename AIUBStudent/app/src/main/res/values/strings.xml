@@ -12,6 +12,9 @@
     <string name="internet_connection_message">Check your network settings and try again.</string>
     <string name="loading">Loading...</string>
     <string name="loading_message">Wait Please</string>
+    <string name="link_subject">AIUB-Student</string>
+    <string name="link">www.arafat.net</string>
+    <string name="share">Share</string>
 
 
     <!--    for RecyclerView-->

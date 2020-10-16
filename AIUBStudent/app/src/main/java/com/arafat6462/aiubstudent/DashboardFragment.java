@@ -1,6 +1,7 @@
 package com.arafat6462.aiubstudent;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -43,7 +44,7 @@ public class DashboardFragment extends Fragment {
     public static final float MAX_CREDIT = 20, MIN_CREDIT = 0, MAX_CGPA = 4, MIN_CGPA = 0;
     public static final int CreditStepMinToMax = 8, CgpaStepMinToMax = 5;
     private RadarChart chart;
-    public TextView student_current_cgpa , student_current_completed_credit,totalCredit;
+    public TextView student_current_cgpa , student_current_completed_credit,totalCredit, shareApp;
 
     // for data
     ParseDataFromPortal parseData = new ParseDataFromPortal(null,null,null);
@@ -59,7 +60,7 @@ public class DashboardFragment extends Fragment {
         RadarButtonCredit = view.findViewById(R.id.RadarButtonCredit);
 
 /////////////// progress bar /////////////
-        double progressBarBlueProgress = ParseDataFromPortal.getCompletedCredit() * 100 / ParseDataFromPortal.getTotalCredit(), progressBarGreenProgress = parseData.getCgpa() * 100 / 4; // set this value as credit and cgpa
+        double  progressBarBlueProgress = ParseDataFromPortal.getCompletedCredit() * 100 / ParseDataFromPortal.getTotalCredit(), progressBarGreenProgress = parseData.getCgpa() * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue = view.findViewById(R.id.progressBarBlue);
         progressBarGreen = view.findViewById(R.id.progressBarGreen);
@@ -127,6 +128,23 @@ public class DashboardFragment extends Fragment {
             }
         });
 /////////////////////////////  calculate cgpa //////////////
+
+
+        //------------------------- app share button ------------------------------//
+        shareApp = view.findViewById(R.id.share_button);
+        shareApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.link_subject));
+                shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.link)); // application link
+                shareIntent.setType("text/plain");
+                startActivity(shareIntent);
+            }
+        });
+        //------------------------- app share button ------------------------------//
 
         return view;
     }

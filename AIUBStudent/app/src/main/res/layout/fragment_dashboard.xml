@@ -296,13 +296,12 @@
                             android:textSize="14sp" />
 
                         <TextView
-                            android:id="@+id/textView7"
+                            android:id="@+id/share_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="Share"
+                             android:padding="10dp"
+                            android:text="@string/share"
                             android:textColor="@color/circularProgressbarForegroundGreen"
                             android:textSize="16sp" />
 

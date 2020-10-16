@@ -94,7 +94,7 @@ public class ResultCalculationFragment extends Fragment {
 
 
         /////////////// progress bar /////////////
-        double progressBarBlueProgress = parseData.getCompletedCredit() * 100 / 148, progressBarGreenProgress = parseData.getCgpa() * 100 / 4, progressBarYellowProgress = 0.0 * 100 / 4; // set this value as credit and cgpa
+        double progressBarBlueProgress = parseData.getCompletedCredit() * 100 / ParseDataFromPortal.getTotalCredit(), progressBarGreenProgress = parseData.getCgpa() * 100 / 4, progressBarYellowProgress = 0.0 * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue = view.findViewById(R.id.progressBarBlue);
         progressBarGreen = view.findViewById(R.id.progressBarGreen);
@@ -169,7 +169,7 @@ public class ResultCalculationFragment extends Fragment {
 
 
         /////////////// progress bar update /////////////
-        double progressBarBlueProgress = resultCalculation.totalCredit * 100 / 148,
+        double  progressBarBlueProgress = resultCalculation.totalCreditCompleted * 100 / ParseDataFromPortal.getTotalCredit(),
                 progressBarGreenProgress = resultCalculation.totalCgpa * 100 / 4,
                 progressBarYellowProgress = resultCalculation.currentSemesterResult * 100 / 4; // set this value as credit and cgpa
 
@@ -187,7 +187,7 @@ public class ResultCalculationFragment extends Fragment {
         progressAnimatorYellow.start();
 
         totalCgpa.setText(String.valueOf(resultCalculation.totalCgpa)); // converting double to string.
-        totalCompletedCredit.setText(String.valueOf(resultCalculation.totalCredit));
+        totalCompletedCredit.setText(String.valueOf(resultCalculation.totalCreditCompleted));
         thisSemesterGpa.setText(String.valueOf(resultCalculation.currentSemesterResult));
         calculated_Result_TextView.setTextColor(Color.parseColor( "#BCEAC0"));
 
