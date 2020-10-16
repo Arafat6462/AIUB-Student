@@ -66,11 +66,13 @@ public class Login extends AppCompatActivity {
                     // checking the blank id & password
                     if (id.length() != 10 || id.charAt(2) != '-' || id.charAt(8) != '-') {
                         userName.setError("Valid User ID Required");
+                        userName.requestFocus();// courser will blink here
                         return;
                     }
 
                     if (TextUtils.isEmpty(pass)) {
                         password.setError("Password Required");
+                        password.requestFocus(); // courser will blink here
                         return;
                     }
 

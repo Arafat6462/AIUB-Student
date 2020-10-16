@@ -10,7 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -20,6 +26,7 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 import static android.content.ContentValues.TAG;
 
@@ -33,10 +40,11 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
     private static double cgpa;
     private static int completedCredit,totalCredit;
     private Activity activity;
-    /////   alert dialog ................
+    private FirebaseAuth mAuth;
+    private String fEmail,fPass;
     androidx.appcompat.app.AlertDialog alertDialog;
-    /////   alert dialog ................
-    ArrayList<String> courseNameAll = new ArrayList<String>();
+
+     ArrayList<String> courseNameAll = new ArrayList<String>();
     ArrayList<String> courseCreditAll = new ArrayList<String>();
     ArrayList<String> findingDepartment = new ArrayList<String>();
 
@@ -227,16 +235,103 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
     }
 
 
+
+
+
+
+
+
+
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
 
-        // start main activity form here instead of login class.
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
+        //--------------------- firebase authentication --------------------------//
 
-        alertDialog.dismiss();
+        // define user id, pass
+
+        if (userId.isEmpty()) {
+            fEmail = "anonymous" + ".appuser@gmail.com";
+            fPass = "anonymous";
+        } else {
+            fEmail = userId.trim() + ".appuser@gmail.com";
+            fPass = userId.trim();
+        }
+        Log.d("firebase","email :"+ fEmail);
+        Log.d("firebase","pass :"+ fPass);
+
+        // log-in to firebase start .,,,,,,,,,,,,,,,
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signInWithEmailAndPassword(fEmail, fPass)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            // if login success, open main activity
+                            // start main activity form here instead of login class.
+                            Intent intent = new Intent(activity, MainActivity.class);
+                            activity.startActivity(intent);
+                            alertDialog.dismiss();
+                            Log.d("firebase","login pass" );
+
+
+                        } else {
+
+                            signUpUser();
+                            Log.d("firebase","login fail" );
+
+                        }
+
+                    }
+                });
+        // log-in to firebase end .,,,,,,,,,,,,,,,
+
+        //--------------------- firebase authentication --------------------------//
+
     }
+
+    private void signUpUser() {
+
+        //fire creating user account
+        mAuth.createUserWithEmailAndPassword(fEmail,fPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (task.isSuccessful()) {
+
+                    // if sign-up success, open main activity
+                    // start main activity form here instead of login class.
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    activity.startActivity(intent);
+                    alertDialog.dismiss();
+                    Log.d("firebase","sign up pass" );
+
+
+                } else {
+
+                    // fail to run the program
+                    Log.d("firebase","sign up fail" );
+
+                }
+            }
+        });
+        //fire creating user account
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     ////////////////// getter ////////////////
