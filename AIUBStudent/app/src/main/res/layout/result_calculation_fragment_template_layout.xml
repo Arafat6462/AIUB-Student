@@ -1,36 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-     android:orientation="vertical"
-      >
-
+    android:orientation="vertical">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
 
-        app:cardCornerRadius="20dp"
-        app:cardElevation="6dp"
-        android:outlineSpotShadowColor="#1A91DD"
         android:outlineAmbientShadowColor="#1A91DD"
+        android:outlineSpotShadowColor="#1A91DD"
         app:cardBackgroundColor="#EBF5FA"
-        >
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
-
-
 
 
             <LinearLayout
@@ -42,63 +35,51 @@
                     android:id="@+id/descriptionInTemplate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="description"
-                    android:gravity="start"
                     android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="start"
                     android:maxLines="1"
-                    android:textSize="15sp"
+                    android:text="description"
                     android:textColor="@color/black"
-                    />
+                    android:textSize="15sp" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/retake_checkBox"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:buttonTint="#99707070"
                     android:text="Retake"
                     android:textColor="#99707070"
-                    android:buttonTint="#99707070"
-                    android:textSize="12sp"
-                      />
+                    android:textSize="12sp" />
 
             </LinearLayout>
-
-
-
-
-
-
-
-
-
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal"
-                android:weightSum="10"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="5dp">
-
-
-
+                android:layout_marginEnd="5dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="10">
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="start">
+                    android:gravity="start"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -106,6 +87,7 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -117,19 +99,19 @@
                 </LinearLayout>
 
 
-
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -149,50 +131,51 @@
                 </LinearLayout>
 
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="D"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2.25"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right">
+                    android:gravity="right"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="D"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2.25"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                </LinearLayout>
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="right">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -200,6 +183,7 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -211,174 +195,179 @@
                 </LinearLayout>
 
 
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right">
+                    android:gravity="right"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         android:text="C"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2.75"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="C"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2.75"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
                 </LinearLayout>
-                </LinearLayout>
-
-
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="right">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                         android:text="C+"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3.00"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                </LinearLayout>
-                </LinearLayout>
-
-
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right">
+                    android:gravity="right"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="B"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3.25"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                </LinearLayout>
-                </LinearLayout>
+                        android:gravity="center"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="C+"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3.00"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right">
+                    android:gravity="right"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="B+"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3.50"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                </LinearLayout>
-                </LinearLayout>
+                        android:gravity="center"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="B"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3.25"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right">
+                    android:gravity="right"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="A"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3.75"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="B+"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3.50"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
                 </LinearLayout>
-                </LinearLayout>
-
-
-
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="right">
+                    android:gravity="right"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3.75"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -386,6 +375,7 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -397,180 +387,159 @@
                 </LinearLayout>
 
 
-
-
-
             </LinearLayout>
 
 
-
-
             <SeekBar
-                android:layout_marginTop="3dp"
                 android:id="@+id/seekBar"
                 style="@style/seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="9"
+                android:layout_marginTop="3dp"
                 android:layout_marginBottom="5dp"
+                android:max="9"
                 android:progress="0"
                 android:splitTrack="false" />
-
-
-
-
-
-
-
-
 
 
             <!--            retake part-->
 
 
-
-        <LinearLayout
+            <LinearLayout
+                android:id="@+id/retake_LinearLayout_part"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/retake_LinearLayout_part">
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="0dp"
-                android:text="Previous Result of This Retake Course"
-                android:textColor="#FF9800" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Previous Result of This Retake Course"
+                    android:textColor="#FF9800" />
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="5dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_horizontal"
-                            android:weightSum="3"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="5dp">
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-
-
-
-
-                            <LinearLayout
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_weight="1"
-                                android:gravity="start">
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:gravity="center">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=""
-                                        android:textAlignment="viewStart"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="UW"
-                                        android:textAlignment="viewStart"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-                                </LinearLayout>
-                            </LinearLayout>
+                                android:text=""
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
 
-
-
-
-                            <LinearLayout
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_weight="1"
-                                android:gravity="center">
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:gravity="center">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=""
-                                        android:textAlignment="viewStart"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="F"
-                                        android:textAlignment="viewStart"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-                                </LinearLayout>
-                            </LinearLayout>
-
-
-
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_weight="1"
-                                android:gravity="right">
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:gravity="center">
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="D"
-                                        android:textAlignment="viewStart"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="2.25"
-                                        android:textAlignment="viewStart"
-                                        android:textColor="@color/black"
-                                        android:textSize="12sp" />
-                                </LinearLayout>
-                            </LinearLayout>
-
-
-
-
-
+                                android:text="UW"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
                         </LinearLayout>
+                    </LinearLayout>
 
-                        <SeekBar
-                            android:layout_marginTop="3dp"
-                            android:id="@+id/seekBar2"
-                            style="@style/seekbar2"
-                            android:layout_width="match_parent"
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:max="2"
-                            android:layout_marginBottom="5dp"
-                            android:progress="0"
-                            android:splitTrack="false" />
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="F"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="D"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2.25"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <SeekBar
+                    android:id="@+id/seekBar2"
+                    style="@style/seekbar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="5dp"
+                    android:max="2"
+                    android:progress="0"
+                    android:splitTrack="false" />
 
             </LinearLayout>
-
-
-
-
 
 
         </LinearLayout>

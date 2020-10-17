@@ -13,23 +13,8 @@
     <string name="loading">Loading...</string>
     <string name="loading_message">Wait Please</string>
     <string name="link_subject">AIUB-Student</string>
-    <string name="link">www.arafat.net</string>
+    <string name="link">https://github.com/Arafat6462/Android-application</string>
     <string name="share">Share</string>
 
 
-    <!--    for RecyclerView-->
-    <string-array name="country_desc">
-         <item>ELECTRONIC DEVICES</item>
-         <item>ENGINEERING MANAGEMENT	</item>
-        <item>MATRICES, VECTORS, FOURIER ANALYSIS</item>
-     </string-array>
-
-    <string-array name="country_Name">
-        <item>Australia </item>
-        <item>Bangladesh </item>
-        <item>Bhutan </item>
-        <item>Canada  </item>
-        <item>China </item>
-        <item>Denmark  </item>
-     </string-array>
 </resources>

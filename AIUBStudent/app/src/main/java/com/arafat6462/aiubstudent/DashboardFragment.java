@@ -37,30 +37,32 @@ public class DashboardFragment extends Fragment {
     // for progressBar
     private ProgressBar progressBarBlue, progressBarGreen;
     ObjectAnimator progressAnimatorBlue, progressAnimatorGreen;
-
     // for radar chart
     private Button RadarButtonCredit, RadarButtonCgpa;
     private boolean RadarButtonCreditBoolean = false, RadarButtonCgpaBoolean = true;
     public static final float MAX_CREDIT = 20, MIN_CREDIT = 0, MAX_CGPA = 4, MIN_CGPA = 0;
     public static final int CreditStepMinToMax = 8, CgpaStepMinToMax = 5;
     private RadarChart chart;
-    public TextView student_current_cgpa , student_current_completed_credit,totalCredit, shareApp;
-
+    public TextView student_current_cgpa, student_current_completed_credit, totalCredit, shareApp;
     // for data
-    ParseDataFromPortal parseData = new ParseDataFromPortal(null,null,null);
+    ParseDataFromPortal parseData = new ParseDataFromPortal(null, null, null);
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+
         ////////////////////      radarChart init     /////////////////////
         chart = view.findViewById(R.id.chart);
         RadarButtonCgpa = view.findViewById(R.id.RadarButtonCgpa);
         RadarButtonCredit = view.findViewById(R.id.RadarButtonCredit);
 
-/////////////// progress bar /////////////
-        double  progressBarBlueProgress = ParseDataFromPortal.getCompletedCredit() * 100 / ParseDataFromPortal.getTotalCredit(), progressBarGreenProgress = parseData.getCgpa() * 100 / 4; // set this value as credit and cgpa
+
+
+        /////////////// progress bar /////////////
+        double progressBarBlueProgress = ParseDataFromPortal.getCompletedCredit() * 100 / ParseDataFromPortal.getTotalCredit(), progressBarGreenProgress = parseData.getCgpa() * 100 / 4; // set this value as credit and cgpa
 
         progressBarBlue = view.findViewById(R.id.progressBarBlue);
         progressBarGreen = view.findViewById(R.id.progressBarGreen);
@@ -78,12 +80,13 @@ public class DashboardFragment extends Fragment {
         student_current_completed_credit = view.findViewById(R.id.student_current_completed_credit);
         totalCredit = view.findViewById(R.id.total_completed_credit);
         // set data form data class
-        Log.d("new3","cgpa 1:"+ parseData.getCgpa());
+        //Log.d("new3", "cgpa 1:" + parseData.getCgpa());
         student_current_cgpa.setText(String.valueOf(parseData.getCgpa()));
         student_current_completed_credit.setText(String.valueOf(parseData.getCompletedCredit()));
-        totalCredit.setText("/"+ParseDataFromPortal.getTotalCredit());
-
+        totalCredit.setText("/" + ParseDataFromPortal.getTotalCredit());
 /////////////// progress bar end /////////////
+
+
 
         // we configure the radar chart
         //   chart.setBackgroundColor(Color.rgb(96,125,140)); //background
@@ -110,6 +113,7 @@ public class DashboardFragment extends Fragment {
         ////////////////////      radarChart     /////////////////////
 
 
+
         ///////////////////////////// calculate cgpa //////////////
         calculateCgpaButton = view.findViewById(R.id.calculateCgpaButtonImageView);
         calculateCgpaButton.setOnClickListener(new View.OnClickListener() {
@@ -117,10 +121,10 @@ public class DashboardFragment extends Fragment {
             public void onClick(View view) {
                 // changing the fragment
                 ResultCalculationFragment resultCalculationFragment = new ResultCalculationFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,resultCalculationFragment,"findThisFragment").addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, resultCalculationFragment, "findThisFragment").addToBackStack(null).commit();
 
                 // this will also work for changing fragment
- //               FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                //               FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 //                fragmentTransaction.replace(R.id.fragment_container, new ResultCalculationFragment());
 //                fragmentTransaction.commit();
 
@@ -138,7 +142,7 @@ public class DashboardFragment extends Fragment {
 
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.link_subject));
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.link_subject));
                 shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.link)); // application link
                 shareIntent.setType("text/plain");
                 startActivity(shareIntent);
@@ -188,7 +192,7 @@ public class DashboardFragment extends Fragment {
         ArrayList<RadarEntry> AllSemesterCREDIT = new ArrayList<>();
 
         // set all credit and cgpa to radat list and convert double to float for radar list. to call static value, don't need to make object.
-        for (int i = 0; i< ParseDataFromPortal.getPerSemesterCredit().size(); i++){
+        for (int i = 0; i < ParseDataFromPortal.getPerSemesterCredit().size(); i++) {
 
             AllSemesterCGPA.add(new RadarEntry(ParseDataFromPortal.getPerSemesterResult().get(i).floatValue()));
             AllSemesterCREDIT.add(new RadarEntry(ParseDataFromPortal.getPerSemesterCredit().get(i).floatValue()));
@@ -204,7 +208,6 @@ public class DashboardFragment extends Fragment {
 //            float val2 = 3.01f;  //(int)(Math.random()*MAX)+MIN;
 //            employee2.add(new RadarEntry(val2));
 //        }
-
 
 
         //added later instead of above for loop random generator

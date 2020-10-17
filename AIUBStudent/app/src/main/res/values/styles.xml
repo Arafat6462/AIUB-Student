@@ -7,26 +7,24 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         // transparent the status bar and change the color
-<!--        <item name="android:windowTranslucentStatus">true</item>-->
-<!--        <item name="android:windowLightStatusBar">true</item>-->
+        <!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <!--        <item name="android:windowLightStatusBar">true</item>-->
     </style>
 
 
-<!--    exit alert dialog theme-->
+    <!--    exit alert dialog theme-->
     <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
 
 
-<!--    no internet theme-->
+    <!--    no internet theme-->
     <style name="NoInternetTheme" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-
-
 
 
 </resources>

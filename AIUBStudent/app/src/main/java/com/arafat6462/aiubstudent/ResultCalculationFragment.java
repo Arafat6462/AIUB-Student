@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
- import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -27,28 +27,20 @@ public class ResultCalculationFragment extends Fragment {
     ObjectAnimator progressAnimatorBlue, progressAnimatorGreen, progressAnimatorYellow;
     RecyclerView recyclerView;
     ImageView imageView55;
-    private TextView thisSemesterGpa, totalCgpa, totalCompletedCredit,totalCredit;
+    private TextView thisSemesterGpa, totalCgpa, totalCompletedCredit, totalCredit;
     public static TextView calculated_Result_TextView;
 
 
     static int[] seekBarValue;
     static int[] seekBarValueRetake;
     static ArrayList<Double> perCourseCredit = new ArrayList<Double>();
-    static ArrayList<String> description = new ArrayList<String>();
+    static ArrayList<String> courseNameOfThisSemester = new ArrayList<String>();
 
 
     // for data collect
     ParseDataFromPortal parseData = new ParseDataFromPortal(null, null, null);
     ResultCalculation resultCalculation = new ResultCalculation();
     ResultCalculationFragmentAdapter resultCalculationFragmentAdapter;
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -60,7 +52,7 @@ public class ResultCalculationFragment extends Fragment {
 
         //////// add data /////////////
         perCourseCredit = parseData.getCourseCredit();
-        description = parseData.getCourseName();
+        courseNameOfThisSemester = parseData.getCourseName();
         seekBarValue = new int[parseData.getCourseName().size()];
         seekBarValueRetake = new int[parseData.getCourseName().size()];
         //////// add data /////////////
@@ -74,17 +66,16 @@ public class ResultCalculationFragment extends Fragment {
 
 
         // ------------------- log -----------------------------
-        Log.d("new3","credit 1:"+  perCourseCredit.get(0));
-        Log.d("new3","credit 2:"+  perCourseCredit.get(1));
-        Log.d("new3","credit 3:"+  perCourseCredit.get(2));
-        Log.d("new3","credit 4:"+  perCourseCredit.get(3));
+        Log.d("new3", "credit 1:" + perCourseCredit.get(0));
+        Log.d("new3", "credit 2:" + perCourseCredit.get(1));
+        Log.d("new3", "credit 3:" + perCourseCredit.get(2));
+        Log.d("new3", "credit 4:" + perCourseCredit.get(3));
 
-        Log.d("new3","COURSE 1:"+ parseData.getCourseName().get(0));
-        Log.d("new3","COURSE 2:"+ parseData.getCourseName().get(1));
-        Log.d("new3","COURSE 3:"+ parseData.getCourseName().get(2));
-        Log.d("new3","COURSE 4:"+ parseData.getCourseName().get(3));
+        Log.d("new3", "COURSE 1:" + parseData.getCourseName().get(0));
+        Log.d("new3", "COURSE 2:" + parseData.getCourseName().get(1));
+        Log.d("new3", "COURSE 3:" + parseData.getCourseName().get(2));
+        Log.d("new3", "COURSE 4:" + parseData.getCourseName().get(3));
         // ------------------- log -----------------------------
-
 
 
         thisSemesterGpa = view.findViewById(R.id.student_this_semester_cgpa);
@@ -116,9 +107,8 @@ public class ResultCalculationFragment extends Fragment {
         totalCgpa.setText(String.valueOf(parseData.getCgpa())); // converting double to string.
         totalCompletedCredit.setText(String.valueOf(parseData.getCompletedCredit()));
         thisSemesterGpa.setText(String.valueOf(0.0));
-        totalCredit.setText("/"+ParseDataFromPortal.getTotalCredit());
-        calculated_Result_TextView.setTextColor(Color.parseColor( "#BCEAC0"));
-
+        totalCredit.setText("/" + ParseDataFromPortal.getTotalCredit());
+        calculated_Result_TextView.setTextColor(Color.parseColor("#BCEAC0"));
 
 
         ImageView imageView1 = view.findViewById(R.id.calculateCgpaButtonImageView);
@@ -139,7 +129,7 @@ public class ResultCalculationFragment extends Fragment {
         // description = getResources().getStringArray(R.array.country_desc);
 
         // send data to adapter class by default constructor
-        resultCalculationFragmentAdapter = new ResultCalculationFragmentAdapter(this.getActivity(), description);
+        resultCalculationFragmentAdapter = new ResultCalculationFragmentAdapter(this.getActivity(), courseNameOfThisSemester);
         //set adapter
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setAdapter(resultCalculationFragmentAdapter);
@@ -169,7 +159,7 @@ public class ResultCalculationFragment extends Fragment {
 
 
         /////////////// progress bar update /////////////
-        double  progressBarBlueProgress = resultCalculation.totalCreditCompleted * 100 / ParseDataFromPortal.getTotalCredit(),
+        double progressBarBlueProgress = resultCalculation.totalCreditCompleted * 100 / ParseDataFromPortal.getTotalCredit(),
                 progressBarGreenProgress = resultCalculation.totalCgpa * 100 / 4,
                 progressBarYellowProgress = resultCalculation.currentSemesterResult * 100 / 4; // set this value as credit and cgpa
 
@@ -189,34 +179,34 @@ public class ResultCalculationFragment extends Fragment {
         totalCgpa.setText(String.valueOf(resultCalculation.totalCgpa)); // converting double to string.
         totalCompletedCredit.setText(String.valueOf(resultCalculation.totalCreditCompleted));
         thisSemesterGpa.setText(String.valueOf(resultCalculation.currentSemesterResult));
-        calculated_Result_TextView.setTextColor(Color.parseColor( "#BCEAC0"));
+        calculated_Result_TextView.setTextColor(Color.parseColor("#BCEAC0"));
 
 /////////////// progress bar update end /////////////
     }
 
-    ////////////  get value of seekBar from adapter /////////////
-    public void setSeekBarValue(Context context, int position, int value) {
-        seekBarValue[position] = value;
-
-//        Log.d("value", "seekBarValue : "+ seekBarValue[position]+ " position : "+ position);
-//         Log.d("value1", "cgpa ...: m..."+ seekBarValue[0]);
-//        Log.d("value1", "cgpa ...: m..."+ seekBarValue[1]);
-//        Log.d("value1", "cgpa ...: m..."+ seekBarValue[2]);
-
-        calculated_Result_TextView.setTextColor(Color.parseColor( "#4CB050")); //set green color when user change the seekBar
-
-    }
-
-
-    public void setSeekBarValueRetake(Context context, int position, int value) {
-        seekBarValueRetake[position] = value;
-        Log.d("value", "seekBarValueRetake : " + seekBarValueRetake[position]);
-
-        calculated_Result_TextView.setTextColor(Color.parseColor( "#4CB050"));//set green color when user change the seekBar
+//    ////////////  get value of seekBar from adapter /////////////
+//    public void setSeekBarValue(Context context, int position, int value) {
+//        seekBarValue[position] = value;
+//
+////        Log.d("value", "seekBarValue : "+ seekBarValue[position]+ " position : "+ position);
+////        Log.d("value1", "cgpa ...: m..."+ seekBarValue[0]);
+////        Log.d("value1", "cgpa ...: m..."+ seekBarValue[1]);
+////        Log.d("value1", "cgpa ...: m..."+ seekBarValue[2]);
+//
+//        calculated_Result_TextView.setTextColor(Color.parseColor( "#4CB050")); //set green color when user change the seekBar
+//
+//    }
 
 
-
-    }
+//    public void setSeekBarValueRetake(Context context, int position, int value) {
+//        seekBarValueRetake[position] = value;
+//        Log.d("value", "seekBarValueRetake : " + seekBarValueRetake[position]);
+//
+//        calculated_Result_TextView.setTextColor(Color.parseColor( "#4CB050"));//set green color when user change the seekBar
+//
+//
+//
+//    }
 
 
     ////////////  get value of seekBar from adapter /////////////

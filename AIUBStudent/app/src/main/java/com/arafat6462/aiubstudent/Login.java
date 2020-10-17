@@ -24,8 +24,8 @@ import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
-    private  ImageView loginButton;
-    private EditText userName,password;
+    private ImageView loginButton;
+    private EditText userName, password;
     public static Activity loginActivity;
 
     @Override
@@ -34,9 +34,9 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         loginActivity = this; // for finish this activity from main activity when back press.
         // for full screen, it will hide status bar from login page
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-         loginDetails();
+        loginDetails();
 
     }
 
@@ -60,22 +60,21 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                    String id = userName.getText().toString().trim();  // trim remove white space
-                    String pass = password.getText().toString().trim();
+                String id = userName.getText().toString().trim();  // trim remove white space
+                String pass = password.getText().toString().trim();
 
-                    // checking the blank id & password
-                    if (id.length() != 10 || id.charAt(2) != '-' || id.charAt(8) != '-') {
-                        userName.setError("Valid User ID Required");
-                        userName.requestFocus();// courser will blink here
-                        return;
-                    }
+                // checking the blank id & password
+                if (id.length() != 10 || id.charAt(2) != '-' || id.charAt(8) != '-') {
+                    userName.setError("Valid User ID Required");
+                    userName.requestFocus();// courser will blink here
+                    return;
+                }
 
-                    if (TextUtils.isEmpty(pass)) {
-                        password.setError("Password Required");
-                        password.requestFocus(); // courser will blink here
-                        return;
-                    }
-
+                if (TextUtils.isEmpty(pass)) {
+                    password.setError("Password Required");
+                    password.requestFocus(); // courser will blink here
+                    return;
+                }
 
 
                 // checking internet connection
@@ -84,7 +83,7 @@ public class Login extends AppCompatActivity {
                     showCustomDialog();
                 } else {
 
-               // checking internet connection
+                    // checking internet connection
 
 
                     //  pass id password for parse data
@@ -129,7 +128,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
 
                 startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-             }
+            }
         });
         //////............................ option check .................////////////
 
@@ -151,14 +150,6 @@ public class Login extends AppCompatActivity {
 //        });
 
     }
-
-
-
-
-
-
-
-
 
 
     // open main activity from login page

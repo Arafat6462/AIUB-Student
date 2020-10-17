@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class ResultCalculation {
 
     double totalGpaCurrentSemester;
-    double totalCreditCurrentSemester ;
-    double backUpCreditForThisSemester ;
+    double totalCreditCurrentSemester;
+    double backUpCreditForThisSemester;
     double backUpGpaForThisSemester;
 
     double currentSemesterResult;
@@ -21,17 +21,16 @@ public class ResultCalculation {
     public void calculateResult(double completedCgpa, double completedCredit, int[] seekBarValue, int[] seekBarValueRetake, ArrayList<Double> perCourseCredit) {
 
 
-
         double[] gradePoint = new double[seekBarValue.length];
         double[] gradePointRetake = new double[seekBarValue.length];
 
-          totalGpaCurrentSemester = 0;
-          totalCreditCurrentSemester = 0;
-          currentSemesterResult =0;
-          totalCgpa =0;
-          totalCreditCompleted =0;
-          backUpCreditForThisSemester = 0;
-          backUpGpaForThisSemester = 0;
+        totalGpaCurrentSemester = 0;
+        totalCreditCurrentSemester = 0;
+        currentSemesterResult = 0;
+        totalCgpa = 0;
+        totalCreditCompleted = 0;
+        backUpCreditForThisSemester = 0;
+        backUpGpaForThisSemester = 0;
 
 
         // initialize all value to -1
@@ -167,18 +166,17 @@ public class ResultCalculation {
         totalCreditCompleted = (int) (completedCredit + totalCreditCurrentSemester);
 
         // cgpa
-        totalGpaCurrentSemester = Math.round(totalGpaCurrentSemester*100)/100.0d;
+        totalGpaCurrentSemester = Math.round(totalGpaCurrentSemester * 100) / 100.0d;
         totalCgpa = ((completedCgpa * completedCredit) + totalGpaCurrentSemester) / (completedCredit + totalCreditCurrentSemester);
 
 
-
-       // Log.d("value1", "gpa ...: "+ backUpGpaForThisSemester);
-        Log.d("value1", "cgpa : "+ currentSemesterResult);
-        Log.d("value1", "credit : "+ totalCgpa);
+        // Log.d("value1", "gpa ...: "+ backUpGpaForThisSemester);
+        Log.d("value1", "cgpa : " + currentSemesterResult);
+        Log.d("value1", "credit : " + totalCgpa);
 
         // for founding the result after 2 decimal point
-        currentSemesterResult = Math.round(currentSemesterResult*100)/100.0d;
-        totalCgpa = Math.round(totalCgpa*100)/100.0d;
+        currentSemesterResult = Math.round(currentSemesterResult * 100) / 100.0d;
+        totalCgpa = Math.round(totalCgpa * 100) / 100.0d;
 //
 //        Log.d("value1", "cgpa : "+ currentSemesterResult);
 //        Log.d("value1", "credit : "+ totalCgpa);

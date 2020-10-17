@@ -35,18 +35,18 @@ import static android.content.ContentValues.TAG;
 /**
  * Created by arafat on 10/11/20 at 3:09 PM.
  */
-public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
+public class ParseDataFromPortal extends AsyncTask<Void, Void, Void> {
 
-    private  String username,password,department;
+    private String username, password, department;
     private static String userId, userName; // static for access form other activity without changing data
     private static double cgpa;
-    private static int completedCredit,totalCredit;
+    private static int completedCredit, totalCredit;
     private Activity activity;
     private FirebaseAuth mAuth;
-    private String fEmail,fPass;
+    private String fEmail, fPass;
     androidx.appcompat.app.AlertDialog alertDialog;
 
-     ArrayList<String> courseNameAll = new ArrayList<String>();
+    ArrayList<String> courseNameAll = new ArrayList<String>();
     ArrayList<String> courseCreditAll = new ArrayList<String>();
     ArrayList<String> findingDepartment = new ArrayList<String>();
 
@@ -67,17 +67,17 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
     protected Void doInBackground(Void... voids) {
 
         try {
-            Connection.Response response= Jsoup.connect("https://portal.aiub.edu" ) // Login
-                    .data("username",username,"password",password)
+            Connection.Response response = Jsoup.connect("https://portal.aiub.edu") // Login
+                    .data("username", username, "password", password)
                     .method(Connection.Method.POST)
                     .ignoreContentType(true)
                     .execute();
 
-           // Log.d("new1","do in background :");
+            // Log.d("new1","do in background :");
 
-            Map<String,String> coky=response.cookies(); // create a season. and  this cookies will keep you login for next page or other task
+            Map<String, String> coky = response.cookies(); // create a season. and  this cookies will keep you login for next page or other task
 
-            Document document=Jsoup.connect("https://portal.aiub.edu/Student/GradeReport/BySemester").cookies(coky).get();
+            Document document = Jsoup.connect("https://portal.aiub.edu/Student/GradeReport/BySemester").cookies(coky).get();
 
             //////////// for //////////////
             for (Element row : document.select("table.table.table-bordered.table-compressed tr")) { // tr for only tale row will select
@@ -103,7 +103,7 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
             }
 
             /// finding department and set total credit/////////////////
-            Document document1=Jsoup.connect("https://portal.aiub.edu/Student/Home/Profile").cookies(coky).get();
+            Document document1 = Jsoup.connect("https://portal.aiub.edu/Student/Home/Profile").cookies(coky).get();
             for (Element row : document1.select("table tr")) {
 
                 findingDepartment.add(row.select("td:nth-of-type(2)").text());
@@ -142,11 +142,9 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
                     totalCredit = 150;
                     break;
             }
-            Log.d("department", "department name is : "+ totalCredit);
+            Log.d("department", "department name is : " + totalCredit);
 
             /// finding department and set total credit/////////////////
-
-
 
 
 //            ///////////////////// check //////////////////
@@ -161,14 +159,13 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
 //            ///////////////////// check //////////////////
 
             ////////////// set course name & credit and sort right way ///////////////
-            for (int i = courseNameAll.size()-1; i>=0; i--){
-                if(courseNameAll.get(i).length() ==0 ){  // empty box will break the loop in html
+            for (int i = courseNameAll.size() - 1; i >= 0; i--) {
+                if (courseNameAll.get(i).length() == 0) {  // empty box will break the loop in html
                     break;
-                }
-                else {
-                    String temp =  courseCreditAll.get(i);
-                    String temp1 = temp.replace(")","");
-                    String temp2 = temp1.replace("(","");
+                } else {
+                    String temp = courseCreditAll.get(i);
+                    String temp1 = temp.replace(")", "");
+                    String temp2 = temp1.replace("(", "");
 
                     courseCredit.add(Double.parseDouble(temp2));
                     courseName.add(courseNameAll.get(i));
@@ -183,21 +180,21 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
 
             }
 
-            for (int i=0; i<courseName.size(); i++){
-                Log.d("new1","course name :"+ courseName.get(i));
-                Log.d("new1","course credit :"+ courseCredit.get(i));
+            for (int i = 0; i < courseName.size(); i++) {
+                Log.d("new1", "course name :" + courseName.get(i));
+                Log.d("new1", "course credit :" + courseCredit.get(i));
 
             }
 
-             userId = courseCreditAll.get(0);
-             userName = courseCreditAll.get(1);
-             completedCredit = Integer.parseInt(courseCreditAll.get(2));
-             cgpa = Double.parseDouble(courseCreditAll.get(4));
+            userId = courseCreditAll.get(0);
+            userName = courseCreditAll.get(1);
+            completedCredit = Integer.parseInt(courseCreditAll.get(2));
+            cgpa = Double.parseDouble(courseCreditAll.get(4));
 
-            Log.d("new1","userId :"+ courseCreditAll.get(0));
-            Log.d("new1","userName :"+ courseCreditAll.get(1));
-            Log.d("new1","completedCredit :"+ courseCreditAll.get(2));
-            Log.d("new1","cgpa :"+ courseCreditAll.get(4));
+            Log.d("new1", "userId :" + courseCreditAll.get(0));
+            Log.d("new1", "userName :" + courseCreditAll.get(1));
+            Log.d("new1", "completedCredit :" + courseCreditAll.get(2));
+            Log.d("new1", "cgpa :" + courseCreditAll.get(4));
 
 //
 //            Log.d("new1","course name size :"+ courseNameAll.size());
@@ -237,13 +234,6 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
     }
 
 
-
-
-
-
-
-
-
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
@@ -259,8 +249,8 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
             fEmail = userId.trim() + ".appuser@gmail.com";
             fPass = userId.trim();
         }
-        Log.d("firebase","email :"+ fEmail);
-        Log.d("firebase","pass :"+ fPass);
+        Log.d("firebase", "email :" + fEmail);
+        Log.d("firebase", "pass :" + fPass);
 
         // log-in to firebase start .,,,,,,,,,,,,,,,
         mAuth = FirebaseAuth.getInstance();
@@ -276,13 +266,13 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
                             Intent intent = new Intent(activity, MainActivity.class);
                             activity.startActivity(intent);
                             alertDialog.dismiss();
-                            Log.d("firebase","login pass" );
+                            Log.d("firebase", "login pass");
 
 
                         } else {
 
                             signUpUser();
-                            Log.d("firebase","login fail" );
+                            Log.d("firebase", "login fail");
 
                         }
 
@@ -297,7 +287,7 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
     private void signUpUser() {
 
         //fire creating user account
-        mAuth.createUserWithEmailAndPassword(fEmail,fPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(fEmail, fPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -308,13 +298,13 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
                     Intent intent = new Intent(activity, MainActivity.class);
                     activity.startActivity(intent);
                     alertDialog.dismiss();
-                    Log.d("firebase","sign up pass" );
+                    Log.d("firebase", "sign up pass");
 
 
                 } else {
 
                     // fail to run the program
-                    Log.d("firebase","sign up fail" );
+                    Log.d("firebase", "sign up fail");
 
                 }
             }
@@ -322,18 +312,6 @@ public class ParseDataFromPortal extends AsyncTask<Void,Void,Void> {
         //fire creating user account
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     ////////////////// getter ////////////////

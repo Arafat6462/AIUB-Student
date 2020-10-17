@@ -1,7 +1,7 @@
 package com.arafat6462.aiubstudent;
 
 import android.content.Context;
-import android.util.Log;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +23,15 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
 
     // for receive date from fragment layout class
     Context context;
-     static ArrayList<String> description = new ArrayList<String>();
-     ResultCalculationFragment resultCalculationFragment = new ResultCalculationFragment();
+    static ArrayList<String> courseNameOfThisSemester = new ArrayList<String>();
+    ResultCalculationFragment resultCalculationFragment = new ResultCalculationFragment();
 
 
     // for receive date from fragment layout class
-    public ResultCalculationFragmentAdapter(Context context, ArrayList<String> description) {
+    public ResultCalculationFragmentAdapter(Context context, ArrayList<String> courseNameOfThisSemester) {
         this.context = context;
-        this.description = description;
-     }
-
-
+        ResultCalculationFragmentAdapter.courseNameOfThisSemester = courseNameOfThisSemester;
+    }
 
 
     // find the template layout-view from layout
@@ -52,10 +50,6 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
     }
 
 
-
-
-
-
     // this onBindViewHolder method take data and set on template layout/row.
     // if i found template card view then, what i need to do.
     @Override
@@ -64,34 +58,28 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
 
 //        holder.titleTextView.setText(title[position]);
         //   holder.descriptionTextView.setText(String.valueOf(position)); // find the position and set the recycler view layout height according to position
-        holder.descriptionTextView.setText(description.get(position));
+        holder.descriptionTextView.setText(courseNameOfThisSemester.get(position));
 //        holder.logoImageView.setImageResource(images[position]);
     }
-
-
-
-
 
 
     //this getItemCount is work for how many copy of template are made.
     @Override
     public int getItemCount() {
-        return description.size();
+        return courseNameOfThisSemester.size();
     }
-
-
-
 
 
     //////////////////////
     // managing the row and keep track
-    public class ResultCalculationFragmentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ResultCalculationFragmentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView titleTextView, descriptionTextView;
         ImageView logoImageView;
+
         ////////////////  show hide retake //////////////
         LinearLayout linearLayout;
         CheckBox checkBox;
-        SeekBar seekBar,seekBar2;
+        SeekBar seekBar, seekBar2;
         ////////////////  show hide retake //////////////
 
         // now all layout file convert to  view. and  this view came to ViewHolder class and now it is in itemView.
@@ -101,21 +89,27 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
             ////////////////  show hide retake and seekBar,checkBox //////////////
 
             // itemView.setOnClickListener(this);
-            checkBox = itemView.findViewById(R.id.checkBox2);
+            checkBox = itemView.findViewById(R.id.retake_checkBox);
             linearLayout = itemView.findViewById(R.id.retake_LinearLayout_part);
             seekBar = itemView.findViewById(R.id.seekBar);
             seekBar2 = itemView.findViewById(R.id.seekBar2);
 
             linearLayout.setVisibility(View.GONE); // initial all gone
+            seekBar.setProgress(0);
 
 
             checkBox.setOnClickListener(this); // add click listener
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                    Log.d("seekbar", "onProgressChanged at : " + getAdapterPosition() + " = " + i);
-                    resultCalculationFragment.setSeekBarValue(context, getAdapterPosition(), i);
-                   }
+                    // Log.d("seekbar", "onProgressChanged at : " + getAdapterPosition() + " = " + i);
+                    // resultCalculationFragment.setSeekBarValue(context, getAdapterPosition(), i);
+
+                    ResultCalculationFragment.seekBarValue[getAdapterPosition()] = i; // set seekbar value of ResultCalculationFragment
+                    ResultCalculationFragment.calculated_Result_TextView.setTextColor(Color.parseColor("#4CB050")); //set green color when user change the seekBar
+
+
+                }
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
@@ -131,8 +125,12 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
             seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                    Log.d("seekbar", "onProgressChanged at : " + getAdapterPosition() + " = " + i);
-                    resultCalculationFragment.setSeekBarValueRetake(context, getAdapterPosition(), i);
+                    // Log.d("seekbar", "onProgressChanged at : " + getAdapterPosition() + " = " + i);
+                    // resultCalculationFragment.setSeekBarValueRetake(context, getAdapterPosition(), i);
+
+                    ResultCalculationFragment.seekBarValueRetake[getAdapterPosition()] = i;
+                    ResultCalculationFragment.calculated_Result_TextView.setTextColor(Color.parseColor("#4CB050"));//set green color when user change the seekBar
+
                 }
 
                 @Override
@@ -164,7 +162,7 @@ public class ResultCalculationFragmentAdapter extends RecyclerView.Adapter<Resul
                 seekBar2.setProgress(0); // progress will 0 when close the retake option
             }
 
-          //  Log.d("click from view holder", "onClick: ");
+            //  Log.d("click from view holder", "onClick: ");
         }
     }
 }

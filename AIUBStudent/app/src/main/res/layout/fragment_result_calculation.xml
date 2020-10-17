@@ -7,351 +7,346 @@
     tools:context=".ResultCalculationFragment">
 
 
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scrollbars="none"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center|left"
+
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/back_button_on_calculate_result"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_baseline_keyboard_backspace_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="cursive"
+                    android:text="Result calculation"
+
+
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/circularProgressbarForegroundBlue" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_gravity="center_horizontal">
 
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center|left"
+                <ProgressBar
+                    android:id="@+id/progressBarYellow"
+                    style="@style/circularProgressBarYellow"
+                    android:layout_width="350dp"
+                    android:layout_height="0dp"
 
-                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:progress="90" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarGreen"
+                    style="@style/circularProgressBarGreen"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/progressBarYellow"
+
+                    app:layout_constraintEnd_toEndOf="@+id/progressBarYellow"
+                    app:layout_constraintStart_toStartOf="@+id/progressBarYellow"
+                    app:layout_constraintTop_toTopOf="@+id/progressBarYellow"
+                    tools:progress="90" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarBlue"
+                    style="@style/circularProgressBarBlue"
+                    android:layout_width="250dp"
+                    android:layout_height="0dp"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/progressBarGreen"
+                    app:layout_constraintEnd_toEndOf="@+id/progressBarGreen"
+                    app:layout_constraintStart_toStartOf="@+id/progressBarGreen"
+                    app:layout_constraintTop_toTopOf="@+id/progressBarGreen"
+                    tools:progress="90" />
+
+
+                <ImageView
+                    android:id="@+id/calculateCgpaButtonImageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/progressbar_center_image"
+                    app:layout_constraintBottom_toBottomOf="@id/progressBarBlue"
+                    app:layout_constraintEnd_toEndOf="@+id/progressBarBlue"
+                    app:layout_constraintStart_toStartOf="@+id/progressBarBlue"
+                    app:layout_constraintTop_toTopOf="@+id/progressBarBlue" />
+
+                <TextView
+                    android:id="@+id/calculated_Result_TextView"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+
+
+                    android:maxLines="4"
+                    android:minLines="2"
+                    android:text="Tab to See Calculated Result"
+                    android:textAlignment="center"
+                    android:textColor="@color/circularProgressbarForegroundGreen"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/calculateCgpaButtonImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/calculateCgpaButtonImageView"
+                    app:layout_constraintStart_toStartOf="@+id/calculateCgpaButtonImageView"
+                    app:layout_constraintTop_toTopOf="@+id/calculateCgpaButtonImageView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent=".32" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent=".66" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/back_button_on_calculate_result"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:padding="5dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="15dp"
-                        android:src="@drawable/ic_baseline_keyboard_backspace_24" />
-
-                    <TextView
+                        android:id="@+id/imageView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:fontFamily="cursive"
-                        android:text="Result calculation"
+                        android:src="@drawable/yellow_progressbar_indicator_dot"
 
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        android:textAllCaps="false"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@+id/imageView5"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/student_this_semester_cgpa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLength="4"
+                            android:textColor="@color/black"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            tools:text="0.0" />
 
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/circularProgressbarForegroundBlue" />
+                        <TextView
+                            android:id="@+id/max_this_semester_cgpa_four"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/4.00" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/title_of_total_gpa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:text="GPA"
+                        app:layout_constraintStart_toEndOf="@+id/imageView5"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
+                    android:layout_height="match_parent"
 
-                    <ProgressBar
-                        android:id="@+id/progressBarYellow"
-                        style="@style/circularProgressBarYellow"
-                        android:layout_width="350dp"
-                        android:layout_height="0dp"
-
-                        tools:progress="90"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ProgressBar
-                        android:id="@+id/progressBarGreen"
-                        style="@style/circularProgressBarGreen"
-                        android:layout_width="300dp"
-                        android:layout_height="300dp"
-                        tools:progress="90"
-
-                        app:layout_constraintBottom_toBottomOf="@+id/progressBarYellow"
-                        app:layout_constraintEnd_toEndOf="@+id/progressBarYellow"
-                        app:layout_constraintStart_toStartOf="@+id/progressBarYellow"
-                        app:layout_constraintTop_toTopOf="@+id/progressBarYellow" />
-
-                    <ProgressBar
-                        android:id="@+id/progressBarBlue"
-                        style="@style/circularProgressBarBlue"
-                        android:layout_width="250dp"
-                        android:layout_height="0dp"
-
-                        tools:progress="90"
-                        app:layout_constraintBottom_toBottomOf="@+id/progressBarGreen"
-                        app:layout_constraintEnd_toEndOf="@+id/progressBarGreen"
-                        app:layout_constraintStart_toStartOf="@+id/progressBarGreen"
-                        app:layout_constraintTop_toTopOf="@+id/progressBarGreen" />
-
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/calculateCgpaButtonImageView"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/progressbar_center_image"
-                        app:layout_constraintBottom_toBottomOf="@id/progressBarBlue"
-                        app:layout_constraintEnd_toEndOf="@+id/progressBarBlue"
-                        app:layout_constraintStart_toStartOf="@+id/progressBarBlue"
-                        app:layout_constraintTop_toTopOf="@+id/progressBarBlue" />
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/green_progressbar_indicator_dot"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/student_current_cgpa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLength="4"
+                            android:textColor="@color/black"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            tools:text="0.0" />
+
+                        <TextView
+                            android:id="@+id/max_cgpa_four"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/4.00" />
+
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/calculated_Result_TextView"
-                        android:layout_width="130dp"
+                        android:id="@+id/title_of_total_cgpa"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-
-                        android:maxLines="4"
-                        android:minLines="2"
-                        android:text="Tab to See Calculated Result"
-                        android:textAlignment="center"
-                        android:textColor="@color/circularProgressbarForegroundGreen"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/calculateCgpaButtonImageView"
-                        app:layout_constraintEnd_toEndOf="@+id/calculateCgpaButtonImageView"
-                        app:layout_constraintStart_toStartOf="@+id/calculateCgpaButtonImageView"
-                        app:layout_constraintTop_toTopOf="@+id/calculateCgpaButtonImageView" />
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:text="TOTAL CGPA"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageView41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/blue_progressbar_indicator_dot"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@+id/imageView41"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/total_completed_credit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLength="4"
+                            android:textColor="@color/black"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            tools:text="0" />
+
+                        <TextView
+                            android:id="@+id/total_credit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/148" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:text="TOTAL CREDIT"
+                        app:layout_constraintStart_toEndOf="@+id/imageView41"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout31" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ResultCalculationRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    >
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_percent=".32" />
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_percent=".66" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/imageView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/yellow_progressbar_indicator_dot"
-
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintStart_toEndOf="@+id/imageView5"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:id="@+id/student_this_semester_cgpa"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLength="4"
-                                tools:text="0.0"
-                                android:textColor="@color/black"
-                                android:textSize="24sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/max_this_semester_cgpa_four"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="/4.00" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/title_of_total_gpa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_weight="1"
-                            android:text="GPA"
-                            app:layout_constraintStart_toEndOf="@+id/imageView5"
-                            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_marginTop="30dp"
+                    android:nestedScrollingEnabled="false"></androidx.recyclerview.widget.RecyclerView>
+            </RelativeLayout>
 
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                        app:layout_constraintStart_toStartOf="@+id/guideline"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/imageView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/green_progressbar_indicator_dot"
-
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintStart_toEndOf="@+id/imageView4"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:id="@+id/student_current_cgpa"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                tools:text="0.0"
-                                android:textColor="@color/black"
-                                android:textSize="24sp"
-                                android:textStyle="bold"
-                                android:maxLength="4"/>
-
-                            <TextView
-                                android:id="@+id/max_cgpa_four"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="/4.00" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/title_of_total_cgpa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_weight="1"
-                            android:text="TOTAL CGPA"
-                            app:layout_constraintStart_toEndOf="@+id/imageView4"
-                            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/guideline2"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/imageView41"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/blue_progressbar_indicator_dot"
-
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout31"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintStart_toEndOf="@+id/imageView41"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:id="@+id/total_completed_credit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                tools:text="0"
-                                android:textColor="@color/black"
-                                android:textSize="24sp"
-                                android:textStyle="bold"
-                                android:maxLength="4"/>
-
-                            <TextView
-                                android:id="@+id/total_credit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="/148" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_weight="1"
-                            android:text="TOTAL CREDIT"
-                            app:layout_constraintStart_toEndOf="@+id/imageView41"
-                            app:layout_constraintTop_toBottomOf="@+id/linearLayout31" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ResultCalculationRecyclerView"
-                            android:nestedScrollingEnabled="false"
-                            android:layout_marginTop="30dp"
-                             >
-                         </androidx.recyclerview.widget.RecyclerView>
-                </RelativeLayout>
-
-
-            </LinearLayout>
-        </ScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

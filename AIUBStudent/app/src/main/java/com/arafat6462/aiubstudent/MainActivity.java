@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     public Activity mainActivity;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     // change the fragment page from bottom navigation view according to user choice
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+
     // hide the bottom navigation & top status bar in calculate cgpa fragment from main activity. and also work for back button
     public void SetNavigationVisibilityAndBackButton(boolean b) {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -82,13 +83,14 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setVisibility(View.VISIBLE);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();// for back button
             bottomNavigationView.setSelectedItemId(R.id.nav_dashboard);
-            currentFragmentId=R.id.nav_dashboard; // dashboard fragment id will store when user back to calculate-result to dashboard
+            currentFragmentId = R.id.nav_dashboard; // dashboard fragment id will store when user back to calculate-result to dashboard
         } else {
             bottomNavigationView.setVisibility(View.GONE);
             // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            currentFragmentId=R.id.ResultCalculationRecyclerView; // ResultCalculationRecyclerView id will store because user not on dashboard fragment.
+            currentFragmentId = R.id.ResultCalculationRecyclerView; // ResultCalculationRecyclerView id will store because user not on dashboard fragment.
         }
     }
+
 
     // change the view based on previous history
     @Override
@@ -107,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
 
                     Login.loginActivity.finish(); // also finish the login activity
-                  //  Log.d("value1", "onBackPressed called : true");
+                    //  Log.d("value1", "onBackPressed called : true");
                     mainActivity.finish();
-                 }
+                }
             });
 
             // if press yes
@@ -122,11 +124,10 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-            if (alertDialog.getWindow() != null){
+            if (alertDialog.getWindow() != null) {
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
             }
             alertDialog.show();
-
             //............... alert dialog ......................
 
 
