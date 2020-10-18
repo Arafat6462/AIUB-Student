@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -126,23 +127,23 @@ public class ParseDataFromPortal extends AsyncTask<Void, Void, Void> {
                 case "Bachelor of Science in Computer Information System":
                     totalCredit = 129;
                     break;
-                case "B.SC. IN ELECTRICAL AND ELECTRONIC ENGINEERING":
+                case "Bachelor of Science in Electrical and Electronic Engineering":
                     totalCredit = 145;
                     break;
-                case "B.SC. IN COMPUTER ENGINEERING ":
+                case "Bachelor of Science in Computer Engineering":
                     totalCredit = 140;
                     break;
                 case "Department of Architecture":
                     totalCredit = 175;
                     break;
-                case "BACHELOR OF BUSINESS ADMINISTRATION":
+                case "Bachelor of Business Administration":
                     totalCredit = 126;
                     break;
                 default:
-                    totalCredit = 150;
+                    totalCredit = 140;
                     break;
             }
-            Log.d("department", "department name is : " + totalCredit);
+           // Log.d("department", "department name is : " + totalCredit);
 
             /// finding department and set total credit/////////////////
 
@@ -305,6 +306,9 @@ public class ParseDataFromPortal extends AsyncTask<Void, Void, Void> {
 
                     // fail to run the program
                     Log.d("firebase", "sign up fail");
+                    Intent intent = new Intent(activity, Login.class);
+                    activity.startActivity(intent);
+                    alertDialog.dismiss();
 
                 }
             }

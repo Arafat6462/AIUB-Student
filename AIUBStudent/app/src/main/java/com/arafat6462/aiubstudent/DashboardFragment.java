@@ -231,13 +231,12 @@ public class DashboardFragment extends Fragment {
         // we create two radar data sets objects with these data
         RadarDataSet set1 = new RadarDataSet(AllSemesterCGPA, "All semester CGPA");
         set1.setColor(Color.argb(255, 0, 220, 80));// category one border color and fill color
-        set1.setFillColor(Color.argb(100, 0, 200, 100));
+        set1.setFillColor(Color.argb(120, 0, 200, 100));
         set1.setDrawFilled(true); // fill the circle of radar
         set1.setFillAlpha(100); // fill  alpha between 255
         set1.setLineWidth(2f);  // border line width
         set1.setDrawHighlightIndicators(true); // mark in x,y axis when touch a point
         set1.setDrawHighlightCircleEnabled(true);
-
 
         RadarDataSet set2 = new RadarDataSet(AllSemesterCREDIT, "All semester CREDIT");
         set2.setColor(Color.argb(255, 40, 160, 220));
@@ -245,7 +244,7 @@ public class DashboardFragment extends Fragment {
         set2.setDrawFilled(true);
         set2.setFillAlpha(100);
         set2.setLineWidth(2f);
-        set2.setDrawHighlightIndicators(false);
+        set2.setDrawHighlightIndicators(true);
         set2.setDrawHighlightCircleEnabled(true);
 
         ArrayList<RadarDataSet> sets = new ArrayList<>();
@@ -308,6 +307,7 @@ public class DashboardFragment extends Fragment {
         yAxis.setAxisMinimum(MIN_CGPA);// we define min and max for axis
         yAxis.setAxisMaximum(MAX_CGPA);
         yAxis.setDrawLabels(true); //marking on the main border like cgpa 2.5, 3, 3.5, 4
+        yAxis.setTextColor(Color.argb(200,0,0,0));//marking on the main border like cgpa 2.5, 3, 3.5, 4 -------  color
 
         // we configure legend for our radar chart
         Legend l = chart.getLegend();  // indicator sign text like "red for credit" and "green for cgpa"
