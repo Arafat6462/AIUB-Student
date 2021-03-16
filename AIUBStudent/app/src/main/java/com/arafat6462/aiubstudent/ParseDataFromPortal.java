@@ -86,10 +86,12 @@ public class ParseDataFromPortal extends AsyncTask<Void, Void, Void> {
 //                    if (row.select("td:nth-of-type(2)").text().equals("")){
 //                        continue;
 //                    }
-                if (row.select("td:nth-of-type(2)").text().length() != 4 && row.select("td:nth-of-type(2)").text().length() != 5) {
+//                if (row.select("td:nth-of-type(2)").text().length() != 4 && row.select("td:nth-of-type(2)").text().length() != 5) {
+//                    courseNameAll.add(row.select("td:nth-of-type(2)").text());
+//                    courseCreditAll.add(row.select("td:nth-of-type(3)").text());
+//                }
                     courseNameAll.add(row.select("td:nth-of-type(2)").text());
                     courseCreditAll.add(row.select("td:nth-of-type(3)").text());
-                }
 
                 // CHECK if the text is double, if true then set  credit and result
                 try {
@@ -100,6 +102,7 @@ public class ParseDataFromPortal extends AsyncTask<Void, Void, Void> {
                 } catch (NumberFormatException e) {
                 }
 
+                Log.d("new4","perSemesterCredit  :" + row.select("td:nth-of-type(2)").text());
 
             }
 
@@ -160,8 +163,39 @@ public class ParseDataFromPortal extends AsyncTask<Void, Void, Void> {
 //            ///////////////////// check //////////////////
 
             ////////////// set course name & credit and sort right way ///////////////
-            for (int i = courseNameAll.size() - 1; i >= 0; i--) {
-                if (courseNameAll.get(i).length() == 0) {  // empty box will break the loop in html
+
+
+
+
+            ///****************** version 1.1 (new) ****************//////////////////
+            // checking for new semester is running or just a pre-registration added new course.
+            int counter = 0,startingIndex=0;
+
+            for (int i = courseNameAll.size() - 1; i >= 0; i--)
+            {
+                if (courseNameAll.get(i).length() == 0)
+                {
+                    counter = i;
+                    break;
+                }
+            }
+
+//            Log.d("new5","perSemesterCredit :" + courseNameAll.get(counter));
+//            Log.d("new5","perSemesterCredit :" + courseNameAll.get(counter-1));
+//            Log.d("new5","perSemesterCredit :" + courseNameAll.get(counter+1));
+
+            if (courseNameAll.get(counter-1).equals("0.00"))// 0.00 for last semester cgpa
+            {
+                startingIndex = counter;
+            }
+            else {
+                startingIndex = courseNameAll.size();
+            }
+
+            ///****************** version 1.1 (new) ****************//////////////////
+
+            for (int i = startingIndex - 2; i >= 0; i--) { // -2 for escape last credit 4 or 5 digit
+                if (courseNameAll.get(i).length() < 6) {  // empty box will break the loop in html
                     break;
                 } else {
                     String temp = courseCreditAll.get(i);
